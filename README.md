@@ -81,7 +81,8 @@ C.共享知识,优化自学体验
   - 3月-4月：JavaWeb
     - Tomcat的运行机制
     - jsp
-    - ....
+    - 学习Docker使用
+    - Docker Desktop了解->为后续微服务项目做准备
   - 5月：SpringIOC+SpringAOP+SpringMVC+Redis+Mybatis学习
   - 6月：整合SSM到SpringBoot,结合视频完成苍穹外卖的后端部分,依托寒假的前端学习完成苍穹外卖的前端部分
   - 7月(暑假开始)：
