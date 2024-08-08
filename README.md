@@ -82,7 +82,11 @@ C.共享知识,优化自学体验
     - Tomcat的运行机制
     - jsp
     - 学习Docker使用
-    - Docker Desktop了解->为后续微服务项目做准备
+      - Windows启动如何开启HyperV
+      - 学会如何安装WSL
+      - 本地安装docker 掌握docker基本命令
+      - 安装Docker DeskTop 学习如何管理镜像(为微服务项目大量中间件管理做准备)
+      - 熟练掌握docker-compose.yml阅读与配置(Kafka,Mysql,Redis等中间件的镜像通过此文件来组织)
   - 5月：SpringIOC+SpringAOP+SpringMVC+Redis+Mybatis学习
   - 6月：整合SSM到SpringBoot,结合视频完成苍穹外卖的后端部分,依托寒假的前端学习完成苍穹外卖的前端部分
   - 7月(暑假开始)：
