@@ -93,6 +93,7 @@ C.共享知识,优化自学体验
       - 了解建造者模式应用：通过内部类实现.builder()的链式调用
       - 了解适配器模式（在Web开发中经常使用）
       - 了解装饰器模式（IO流常用）
+      - 了解观察者模式（ZooKeeper）
   - 8月：
     - Dubbo/SpringCloud使用
     - ZooKeeper使用
