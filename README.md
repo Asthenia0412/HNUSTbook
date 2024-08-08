@@ -91,7 +91,8 @@ C.共享知识,优化自学体验
   - 6月：整合SSM到SpringBoot,结合视频完成苍穹外卖的后端部分,依托寒假的前端学习完成苍穹外卖的前端部分
   - 7月(暑假开始)：
     - 强化八股文学习：重点关注JVM与JUC，看集合源码，了解Redis常见八股
-    - 强化网络编程部分：在IO基础上学习NIO，掌握Netty基本用法,为微服务学习打下基础
+    - 基于Vue2基础学习Vue3,回顾前端知识点.结合LeetCode的Javascript特训,强化函数式编程思想.
+    - 强化网络编程部分：在IO基础上学习NIO，掌握Netty基本API.至此：你应该掌握使用IO,NIO,Netty三种不同封装程度的技术来实现BS架构通讯
     - 阶段标准：此时力扣应该已经刷满200题左右（如果你从寒假开始坚持的话）
     - 设计模式基本认知：
       - 手搓单例模式(懒汉式,饿汉式)
@@ -100,8 +101,18 @@ C.共享知识,优化自学体验
       - 了解装饰器模式（IO流常用）
       - 了解观察者模式（ZooKeeper）
   - 8月：
-    - Dubbo/SpringCloud使用
-    - ZooKeeper使用
+    - Dubbo学习
+    - SpringCloud项目概览
+      - 结合Docker完成中间件部署
+      - 注册中心/网关/熔断机制/分布式锁等功能
+      - 学会拆分单体项目-使用微服务思想
+    - ZooKeeper对Java开放的API与ZooKeeper的部署
+    - Kafka使用对Java开放的API与Kafka的部署
+    - RabbitMQ的Java客户端API
+    - NoSql的强化学习
+      - MongoDB
+      - ElasticSearch
+      - Redis-深入学习八股知识
     - JVM调优的基本掌握：
       - 堆内存与MetaSpace内存
       - 堆外内存
