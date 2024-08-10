@@ -109,6 +109,18 @@ C.共享知识,优化自学体验
     - ZooKeeper对Java开放的API与ZooKeeper的部署
     - Kafka使用对Java开放的API与Kafka的部署
     - RabbitMQ的Java客户端API
+    - 掌握MyBatis-plus的十一种常见用法or拓展插件
+      -  分页实现
+      -  条件构造器（替代Mybatis中的XML配置动态SQL）
+      -  代码生成器（基于本地实体类来生成数据库对应字段的controller service mapper）
+      -  逻辑删除（实际没删,但是无法让该行被查询,用于标记历史数据）
+      -  性能分析插件(测试环境用于评估SQL性能,生产环境要关闭)
+      -  自动填充功能(譬如插入时间与更新时间)
+      -  乐观锁(版本号机制的单体项目实现)
+      -  序列化器
+      -  数据权限设置(公司分部门执行不同sql)
+      -  多数据源(主从节点)
+      -  SQL注入器(在不改变现有代码情况下,注入新的SQL实现功能);
     - NoSql的强化学习
       - MongoDB
       - ElasticSearch
