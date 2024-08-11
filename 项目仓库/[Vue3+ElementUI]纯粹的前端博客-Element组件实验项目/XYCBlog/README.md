@@ -1,5 +1,5 @@
 # XYCBlog
-
+没有上传node_modules文件 通过 .package-lock.json 来核对需要下载的node依赖
 This template should help get you started developing with Vue 3 in Vite.
 
 ## Recommended IDE Setup
