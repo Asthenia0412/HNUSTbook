@@ -1,0 +1,32 @@
+/* 清除浮动，在 .vue 文件中使用的时候直接引用即可：@include clearfix; */
+@mixin clearfix {
+    &:after {
+      content: '';
+      display: table;
+      clear: both;
+    }
+  }
+  
+  /* 滚动条的设置 */
+  @mixin scrollBar {
+    &::-webkit-scrollbar-track-piece {
+      background: #d3dce6;
+    }
+  
+    &::-webkit-scrollbar {
+      width: 6px;
+    }
+  
+    &::-webkit-scrollbar-thumb {
+      background: #99a9bf;
+      border-radius: 20px;
+    }
+  }
+  
+  @mixin relative {
+    position: relative;
+    width: 100%;
+    height: 100%;
+  }
+  
+  
