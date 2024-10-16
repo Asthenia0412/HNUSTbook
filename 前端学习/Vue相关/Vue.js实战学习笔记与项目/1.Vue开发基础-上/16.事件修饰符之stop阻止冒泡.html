@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>阻止事件冒泡示例</title>
+<script src="vue.js"></script>
+</head>
+<body>
+
+<div id="app">
+  <!-- 外层元素 -->
+  <div @click="outerDivClick">
+    点击外层Div
+    <!-- 内层元素 -->
+    <button @click.stop="innerButtonClick">点击内层按钮</button>
+    <!--如果去掉stop 点击内层元素会弹出外层元素被点击的信息-->
+  </div>
+</div>
+
+<script>
+new Vue({
+  el: '#app',
+  methods: {
+    outerDivClick: function() {
+      alert('外层Div被点击了！');
+    },
+    innerButtonClick: function(event) {
+      alert('内层按钮被点击了！');
+      // 使用 Vue 的事件修饰符 .stop 来阻止事件冒泡
+      // 如果需要手动阻止冒泡，可以取消下面的注释，并注释掉 button 上的 @click.stop
+      // event.stopPropagation();
+    }
+  }
+});
+</script>
+
+</body>
+</html>

@@ -1,0 +1,26 @@
+<div id="app">
+    <!--绑定样式属性值-->
+    <div v-bind:style="{backgroundColor:pink,width:width,height:height}">
+        <!--绑定样式对象-->
+        <div v-bind:style="myDiv"></div>
+    </div>
+
+</div>
+<script src="vue.js"></script>
+<script>
+    var vm = new Vue({
+        el:'#app',
+        data:{
+            myDiv: {
+                backgroundColor: 'red',
+                width:'100px',
+                height:'100px',
+        
+        },
+        pink:'pink',
+        width:'100%',
+        height:'200px'
+
+        }
+    })
+</script>

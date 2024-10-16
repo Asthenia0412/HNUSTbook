@@ -1,0 +1,30 @@
+<div id="app">
+<div>{{message|toUpCase}}</div>
+<div v-bind:id="dataId|formatId">helloWorld</div>
+</div>
+<script src="vue.js">
+/**
+ * 1."|"是管道符,管道符前的代码执行结果会传递给管道符后座位参数
+ * 2.管道符后的过滤器名称的实现在filters中,其参数就是|前的元素
+ * 3.在具体过滤器中,通过调用js的原生API对数据处理,譬如让value转化为大写
+ * 4.v-bind:id的管道符含义是：让该div的id为过滤器处理后的值f0
+ * 5.注意:v-bind是将动态绑定数据 绑定在html的元素属性的指令 比如id就是html的元素,具体的id值绑定到vue中 就是通过v-bind;
+*/
+</script>
+<script>
+var vm = new Vue({
+    el:'#app',
+    data:{
+        message:'helloWorld',
+        dataId:'dff1'
+    },
+    filters:{
+        toUpCase(value){
+            return value?value.toUpperCase():''
+        },
+        formatId(value){
+            return value?value.charAt(1)+value.indexOf('d'):''
+        }
+    }
+})
+</script>

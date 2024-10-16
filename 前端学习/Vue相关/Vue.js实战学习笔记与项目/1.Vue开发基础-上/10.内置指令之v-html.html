@@ -1,0 +1,15 @@
+<div id="app">
+<div v-html="msg"></div>
+<p v-html="msg"></p>
+</div>
+<script src="vue.js">
+
+</script>
+<script>
+    var vm = new Vue({
+        el:'#app',
+        data:{
+            msg:'<h2>这个h2内容是在data的变量中以字符串形式被v-html呈现在dom元素中的</h2><br>'
+        }
+    })
+</script>

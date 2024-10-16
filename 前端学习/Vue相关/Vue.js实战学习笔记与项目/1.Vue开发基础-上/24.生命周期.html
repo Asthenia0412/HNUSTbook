@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vue Lifecycle Hooks Example</title>
+<script src="vue.js"></script>
+</head>
+<body>
+<div id="app">
+  <lifecycle-counter></lifecycle-counter>
+</div>
+
+<script>
+Vue.component('lifecycle-counter', {
+  template: `
+    <div>
+      <h1>Lifecycle Counter</h1>
+      <p>{{ count }}</p>
+      <button @click="increment">Increment</button>
+    </div>
+  `,
+  data() {
+    return {
+      count: 0
+    };
+  },
+  methods: {
+    increment() {
+      this.count += 1;
+    }
+  },
+  beforeCreate() {
+    console.log('beforeCreate: The component is about to be created.');
+  },
+  created() {
+    console.log('created: The component has been created.');
+  },
+  beforeMount() {
+    console.log('beforeMount: The component is about to be mounted.');
+  },
+  mounted() {
+    console.log('mounted: The component has been mounted.');
+  },
+  beforeUpdate() {
+    console.log('beforeUpdate: The component data is about to be updated.');
+  },
+  updated() {
+    console.log('updated: The component data has been updated.');
+  },
+  beforeDestroy() {
+    console.log('beforeDestroy: The component is about to be destroyed.');
+  },
+  destroyed() {
+    console.log('destroyed: The component has been destroyed.');
+  }
+});
+
+new Vue({
+  el: '#app'
+});
+</script>
+</body>
+</html>

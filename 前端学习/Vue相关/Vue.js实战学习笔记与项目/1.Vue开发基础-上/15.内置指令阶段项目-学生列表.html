@@ -1,0 +1,45 @@
+<div id="app">
+    <button @click="add">添加学生</button>
+    <button @click="del">删除学生</button>
+    <table width="50%" style="border-collapse: collapse; margin-top: 20px;">
+        <thead>
+            <tr>
+                <th style="border: 1px solid #ccc; padding: 10px;">班级</th>
+                <th style="border: 1px solid #ccc; padding: 10px;">姓名</th>
+                <th style="border: 1px solid #ccc; padding: 10px;">性别</th>
+                <th style="border: 1px solid #ccc; padding: 10px;">年龄</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr v-for="item in students" :key="item.name">
+                <td style="border: 1px solid #ccc; padding: 10px;">{{ item.grade }}</td>
+                <td style="border: 1px solid #ccc; padding: 10px;">{{ item.name }}</td>
+                <td style="border: 1px solid #ccc; padding: 10px;">{{ item.gender }}</td>
+                <td style="border: 1px solid #ccc; padding: 10px;">{{ item.age }}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<script src="vue.js"></script>
+<script>
+    var vm = new Vue({
+        el: '#app',
+        data: {
+            students: []
+        },
+        methods: {
+            add() {
+                var student = {
+                    grade: '1',
+                    name: '张三',
+                    gender: '男',
+                    age: '25'
+                }
+                this.students.push(student);
+            },
+            del() {
+                this.students.pop();
+            }
+        }
+    })
+</script>

@@ -1,0 +1,30 @@
+<div id="app">
+    <input type="text" v-model="cityName">
+</div>
+<script src="vue.js"></script>
+<script>
+    /**
+     * 1.我们为何需要watch,methods不也可以监听么？
+     * Vue中的事件处理方法需要通过条件触发，无法实现自动监听Vue实例中的状态变化
+     * watch很好的解决了这一点
+     * 2.watch有什么用?
+     * 只需要监听指定data中属性的变化,便可以执行当前data属性绑定的方法
+     * 3.watch下的监听部分,监听名为字段名,第一个参数是新传入的值,第二个参数是旧的值.
+     * 新的在前，旧的在后
+     * 
+     * 
+     * 
+    */
+    var vm = new Vue({
+        el:'#app',
+        data:{
+            cityName:'Shanghai'
+        },
+        watch:{
+            cityName(NewVal,oldVal){
+                console.log("旧的值是 "+oldVal+" 新的值是 "+NewVal);
+            }
+        }
+
+    })
+</script>

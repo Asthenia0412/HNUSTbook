@@ -1,0 +1,34 @@
+<div id="app">
+<my-component></my-component>
+<my-component></my-component>
+<my-component></my-component>
+<my-component></my-component>
+<local-component></local-component>
+</div>
+<script src="vue.js">
+</script>
+<script>
+  /**
+   * 全局组件的创建依赖Vue.component方法 其中第一个参数是全局属性的标签名
+   * 也就是在div中调用的内容
+   * 第二个参数是组件的具体内容,注意：date函数和template是等价的
+   * 局部组件是注册在某个vue实例中的components的
+   * 
+  */
+  Vue.component('my-component',{
+    data(){
+      return {
+        count: 0,
+      }
+    },
+    template:'<Button v-on:click="count++">被单击{{count}}次,我是全局组件</button>'
+  },)
+
+  var localComponent = {
+    template: '<p>我是vm实例中的局部组件</p>'
+  }
+  var vm = new Vue({
+    el:'#app',
+    components:{'local-component': localComponent}
+  })
+</script>

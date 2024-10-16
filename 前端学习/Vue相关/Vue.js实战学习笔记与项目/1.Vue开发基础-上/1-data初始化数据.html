@@ -1,0 +1,34 @@
+<div id="app">
+    <p>{{name}}</p>
+</div>
+<script src = "vue.js">
+    /*
+    在引用vue.js的script中写代码是无效的
+    */
+</script>
+<script>
+    var vm = new Vue({
+        el:'#app',
+        data:{
+            name:'定义初始化数据'
+        }
+    })
+    console.log(vm.$data.name);
+    console.log(vm.name);
+    /**
+     * 1.Vue实例创建的数据对象为data
+     * 2.Vue会将Data的属性转化为getter和setter,从而这个属性可以响应数据的变化
+     * 3.我们在vue实例之外,可以使用 实例名称.$data.具体属性名来访问 例如vm.$data.name访问vm实例中的data中的name属性
+     * 4.当然,也可以使用vm.name访问
+     * 5.
+     * 在Vue.js中，$符号通常用于区分Vue实例的特定属性或方法与其他普通变量。以下是对这个符号的具体解释：
+     * 1. 特殊标识 命名约定：$是一个约定，表示该属性或方法是Vue实例提供的特殊功能或内置的API。这使得开发者能够快速识别出这些属性和方法。
+     * 2. Vue实例的属性
+     * 实例属性：例如，vm.$data、vm.$el、vm.$watch等，这些都是Vue实例的内置属性和方法，允许你访问或者操作Vue的响应式数据、DOM元素和观察者。
+     * 3. 防止命名冲突
+     * 避免混淆：使用$前缀可以帮助开发者避免与用户自定义的属性或方法发生命名冲突。例如，如果你在数据中定义了一个名为data的属性，使用$data就可以清晰地区分出Vue的内置数据属性。
+     * 
+     * 
+     * 
+    */
+</script>

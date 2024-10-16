@@ -1,0 +1,30 @@
+<div id="app">
+    <p>总价格: {{totalPrice}}</p>
+    <p>单价:{{price}}</p>
+    <p>数量:{{num}}</p>
+    <div>
+        <button @click="num==0?0:num--">减少数量</button>
+        <button @click="num++">增加数量</button>
+    </div>
+</div>
+<script src = "vue.js"></script>
+<script>
+    var vm = new Vue({
+        el:'#app',
+        data:{
+            price: 20,
+            num: 1
+        },
+        computed:{
+            totalPrice(){
+                return this.price*this.num;
+            }
+        }
+    })
+    /**
+     * 1.就形式而言,计算属性的撰写类似于方法
+     * 2.totalPrice(){
+     * return xxxx}
+     * 3.使用this表明正在使用该Vue实例中的属性
+    */
+</script>

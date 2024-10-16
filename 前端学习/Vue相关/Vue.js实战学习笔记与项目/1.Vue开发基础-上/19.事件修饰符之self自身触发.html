@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>自身触发事件示例</title>
+<script src="vue.js"></script>
+</head>
+<body>
+
+<div id="app">
+  <!-- 使用 .self 修饰符 -->
+  <div @click.self="handleDivClick">
+    点击这里:
+    <button @click="handleButtonClick">按钮</button>
+  </div>
+</div>
+
+<script>
+new Vue({
+    /**
+     * 在Vue.js中，.self 事件修饰符用于仅当事件是从事件绑定的元素本身触发时才调用事件处理函数。
+     * 这意味着如果事件是冒泡上来的，即使它到达了绑定该事件的元素，也不会触发事件处理函数。
+     * 在这个例子中，我们有一个 div 元素和一个按钮。div 元素上使用了 .self 修饰符。这意味着 handleDivClick 方法只会在直接点击 div 本身时被触发，而不是当点击事件从按钮冒泡到 div 时。
+
+如果你点击按钮，你会看到按钮的点击事件触发了，并且没有弹出关于 div 的警告框，
+因为按钮的点击事件冒泡到 div 时，.self 修饰符阻止了 div 的点击事件处理函数被调用。
+只有当你直接点击 div（非按钮部分）时，handleDivClick 方法才会被调用，并且会弹出相应的警告框。
+     * 
+    */
+  el: '#app',
+  methods: {
+    handleDivClick: function() {
+      alert('只有当点击div本身时，这个事件才会被触发。');
+    },
+    handleButtonClick: function() {
+      alert('按钮被点击了！');
+    }
+  }
+});
+</script>
+
+</body>
+</html>

@@ -1,0 +1,30 @@
+<div id="app">
+    <div v-bind:class="box">
+        我是box
+        <div v-bind:class="inner">我是inner1</div>
+        <div v-bind:class="inner">我是inner2</div>
+    </div>
+</div>
+<script src="vue.js"></script>
+<script>
+    var vm = new Vue({
+        el:'#app',
+        data:{
+            box:'box',
+            inner:'inner'
+        }
+    })
+</script>
+<style>
+    .box{
+        background-color: pink;
+        height: 200px;
+        width: 100%;
+    }
+    .inner{
+        background-color: red;
+        width: 100px;
+        height: 50px;
+        border:  2px solid white;
+    }
+</style>

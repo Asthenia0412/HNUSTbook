@@ -1,0 +1,66 @@
+<div id="app">
+<div>
+  <parent-component></parent-component>
+</div>
+</div>
+<script src="vue.js"></script>
+<template id="son">
+ <div>
+  <div>这里是子组件</div>
+  <div>父组件对我说了：{{FromParent}}</div>
+  <button @click="sendMessageToParent">向父组件发送信息</button>
+ </div>
+</template>
+<template id="Parent">
+  <div>
+    <div>这里是父组件</div>
+  <div>子组件对我表达了:{{FromSon}}</div>
+  <child-component :from-parent="messageToChild" @message-from-child="receiveMessageFromChild"></child-component>
+  </div>
+</template>
+<script>
+  /**
+   * 1.为什么子组件标签一定要用 from-parent？我改成from-qarent就没法让子标签拿到父亲传的值了？：
+   * Vue 会自动将 props 中的驼峰式命名（FromParent）转换为短横线分隔命名（from-parent），这是 Vue 的一个特性。因此，当你在父组件中使用 :from-parent 绑定时，它实际上是在与子组件中的 FromParent prop 进行匹配。
+当你尝试将 :from-parent 改为 :from-qarent 时，子组件就收不到信息了，因为 from-qarent 并没有在子组件的 props 中定义。所以，Vue 无法将 from-qarent 属性的值传递给子组件。
+为了修复这个问题，你需要确保父组件中的绑定属性名与子组件 props 中定义的名称相对应。如果你想在父组件中使用 from-qarent，那么你也需要在子组件的 props 中添加 fromQarent（Vue 会将其转换为 from-qarent）：
+    2.切记切记，组件一定要是小写+横线
+  *
+
+  */
+  var vm = new Vue({
+    el:'#app',
+    components:{
+      'parent-component':{
+        template:'#Parent',
+        data(){
+          return{
+            messageToChild:'你好,子组件',
+            FromSon:'暂未收到子组件传递的信息'
+          }
+        },
+        
+        components:{
+          'child-component':{
+            template:'#son',
+            data(){
+              return{
+                FromSon:'暂时尚未收到子组件传递的信息'
+              }
+            },props:['FromParent'],
+            methods:{
+              sendMessageToParent(){
+                this.$emit('message-from-child','你好,父组件');
+              }
+            }
+          }
+        },
+    methods:{
+      receiveMessageFromChild(message){
+        this.FromSon = message;
+      }
+    }
+      }
+    }
+  })
+</script>

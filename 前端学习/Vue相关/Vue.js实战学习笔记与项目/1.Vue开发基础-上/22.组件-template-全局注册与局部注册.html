@@ -1,0 +1,39 @@
+<div id="app">
+<global-component></global-component>
+<local-component></local-Component>
+</div>
+<script src="vue.js"></script>
+<template id="tmp1">
+<p>{{title}}现在正在展示的是全局注册的组件tmp1</p>
+</template>
+<template id="tmp2">
+  <p>{{title}}现在正在展示的是局部注册的组件tmp2</p>
+  </template>
+<script>
+  /**
+   * 1.切记：组件的注册名一定一定要是小写开头+联杠 否则会报错 Global-Component不可以 但是global-component可以
+   * 2.template切记要用#开头
+   * 3.components包含的部分要用函数式的data
+  */
+  Vue.component('global-component',{
+    template:'#tmp1',
+    data(){
+      return{
+        title:'全局属性来了！ '
+      }
+    }
+  })
+  var vm = new Vue({
+    el:'#app',
+    components:{
+      'local-component':{
+        template:'#tmp2',
+        data(){
+          return {
+            title:'局部属性来了！'
+          }
+        }
+      }
+    }
+  })
+</script>

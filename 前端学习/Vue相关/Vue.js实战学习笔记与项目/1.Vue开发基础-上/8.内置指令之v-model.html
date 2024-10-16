@@ -1,0 +1,13 @@
+<div id="app">
+<input type="text" v-model="msg">
+<p>展示双向绑定效果:{{msg}}</p>
+</div>
+<script src="vue.js"></script>
+<script>
+    var vm = new Vue({
+        el:'#app',
+        data:{
+            msg:'v-model实现双向绑定功能'
+        }
+    })
+</script>

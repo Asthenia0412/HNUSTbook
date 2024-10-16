@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>只触发一次事件示例</title>
+<script src="vue.js"></script>
+</head>
+<body>
+
+<div id="app">
+  <!-- 使用 .once 修饰符 -->
+  <button @click.once="handleButtonClick">点击我</button>
+</div>
+
+<script>
+new Vue({
+  el: '#app',
+  methods: {
+    handleButtonClick: function() {
+      alert('这个事件只会触发一次！');
+    }
+  }
+});
+</script>
+
+</body>
+</html>

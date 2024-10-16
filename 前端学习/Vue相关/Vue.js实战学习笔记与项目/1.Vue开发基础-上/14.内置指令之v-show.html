@@ -1,0 +1,13 @@
+<div id="app">
+    <button @click="isShow=!isShow">显示/隐藏</button>
+    <div v-show="isShow" style="background-color: #CCC">我是v-if</div>
+</div>
+<script src="vue.js"></script>
+<script>
+    var vm = new Vue({
+        el:'#app',
+        data:{
+            isShow: true
+        }
+    })
+</script>

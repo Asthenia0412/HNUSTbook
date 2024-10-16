@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>捕获事件示例</title>
+<script src="vue.js"></script>
+</head>
+<body>
+
+<div id="app">
+  <!-- 父元素使用 .capture 修饰符 -->
+  <div @click.capture="handleParentClick">
+    父元素
+    <!-- 子元素也有点击事件处理器 -->
+    <button @click="handleChildClick">点击我</button>
+  </div>
+</div>
+
+<script>
+    /**
+     * 在这个例子中，当点击子元素（按钮）时，
+     * 由于父元素使用了 .capture 修饰符，父元素的点击事件处理器 handleParentClick 
+     * 会先于子元素的点击事件处理器 handleChildClick 被触发。
+     * 如果父元素没有使用 .capture 修饰符，则子元素的点击事件处理器会先被触发，
+     * 然后事件会冒泡到父元素，触发父元素的事件处理器。
+     * 
+    */
+new Vue({
+  el: '#app',
+  methods: {
+    handleParentClick: function() {
+      console.log('父元素的捕获事件');
+    },
+    handleChildClick: function() {
+      console.log('子元素的点击事件');
+    }
+  }
+});
+</script>
+
+</body>
+</html>

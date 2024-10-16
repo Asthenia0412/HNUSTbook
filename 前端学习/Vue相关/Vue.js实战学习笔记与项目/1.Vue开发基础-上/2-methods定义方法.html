@@ -1,0 +1,22 @@
+<div id="app">
+    <button @click="showInfo">请你单击我</button>
+    <p>{{msg}}</p>
+</div>
+<script src="vue.js">
+</script>
+<script>
+    /**
+     * 1.methods定义的方法,this指向vue实例本身
+    */
+    var vm = new Vue({
+        el:'#app',
+        data:{
+            msg:'暂时未曾触发事件'
+        },
+        methods:{
+            showInfo(){
+                this.msg = '触发单击事件';
+            }
+        }
+    })
+</script>

@@ -1,0 +1,14 @@
+<div id="app">
+<div v-for="(item,index) in list" data-id="index">
+    索引是:{{index}} 内容是:{{item}}
+</div>
+</div>
+<script src="vue.js"></script>
+<script>
+    var vm = new Vue({
+        el:'#app',
+        data:{
+            list:[1,2,3] 
+        }
+    })
+</script>

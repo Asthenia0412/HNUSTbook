@@ -1,0 +1,18 @@
+<div id="app">
+<p>{{msg}}</p>
+<button v-on:click="showInfo">请你单击我</button>
+</div>
+<script src="vue.js"></script>
+<script>
+    var vm = new Vue({
+        el:'#app',
+        data:{
+            msg:'请你单击按钮查看内容',
+        },
+        methods:{
+            showInfo(){
+                this.msg = 'ok,这是你点击按钮之后呈现的结果'
+            }
+        }
+    })
+</script>
