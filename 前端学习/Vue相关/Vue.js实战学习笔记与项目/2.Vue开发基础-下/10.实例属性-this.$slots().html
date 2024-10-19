@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>E-commerce Product Card with Slots</title>
+</head>
+<body>
+    <div id="app">
+        <!-- 商品卡片组件 -->
+        <product-card :product="product">
+            <!-- 默认插槽内容 -->
+            <template v-slot:default>
+                <div class="promotion-tag">促销中！</div>
+                <button class="buy-now-btn">立即购买</button>
+            </template>
+        </product-card>
+    </div>
+
+    <!-- 商品卡片组件模板 -->
+    <template id="product-card-template">
+        <div class="product-card">
+            <h3>{{ product.name }}</h3>
+            <p>{{ product.description }}</p>
+            <!-- 使用 this.$slots 访问插槽内容 -->
+            <slot></slot>
+        </div>
+    </template>
+
+    <script src="vue.js"></script>
+    <script>
+        // 商品卡片组件定义
+        Vue.component('product-card', {
+            template: '#product-card-template',
+            props: ['product'],
+            mounted() {
+                // 挂载后打印插槽内容
+                console.log(this.$slots);
+            }
+        });
+
+        // 创建 Vue 根实例
+        new Vue({
+            el: '#app',
+            data: {
+                product: {
+                    name: '商品A',
+                    description: '这是商品A的描述'
+                }
+            }
+        });
+    </script>
+</body>
+</html>

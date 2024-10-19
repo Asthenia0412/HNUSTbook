@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vue List Transition</title>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+<style>
+.list-enter-active, .list-leave-active {
+  transition: all 1s;
+}
+.list-enter, .list-leave-to {
+  opacity: 0;
+  transform: translateY(30px);
+}
+</style>
+</head>
+<body>
+<div id="app">
+  <button @click="addItem">Add Item</button>
+  <button @click="removeItem">Remove Item</button>
+  <transition-group name="list" tag="ul">
+    <li v-for="item in items" :key="item.id">
+      {{ item.text }}
+    </li>
+  </transition-group>
+</div>
+
+<script>
+new Vue({
+  el: '#app',
+  data: {
+    items: [
+      { id: 1, text: 'Item 1' },
+      { id: 2, text: 'Item 2' },
+      { id: 3, text: 'Item 3' }
+    ],
+    nextId: 4
+  },
+  methods: {
+    addItem() {
+      this.items.splice(this.getRandomIndex(), 0, { id: this.nextId++, text: `Item ${this.nextId}` });
+    },
+    removeItem() {
+      this.items.splice(this.getRandomIndex(), 1);
+    },
+    getRandomIndex() {
+      return Math.floor(Math.random() * this.items.length);
+    }
+  }
+});
+</script>
+</body>
+</html>

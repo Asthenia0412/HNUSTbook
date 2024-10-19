@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vue Router Dynamic Route Example</title>
+<script src="https://unpkg.com/vue@2.6.14/dist/vue.js"></script>
+<script src="https://unpkg.com/vue-router@3.5.3/dist/vue-router.js"></script>
+</head>
+<body>
+
+<!-- 组件模板 -->
+<template id="user-profile-template">
+  <div>
+    <h1>User Profile</h1>
+    <p>User ID: {{ $route.params.id }}</p>
+  </div>
+</template>
+
+<!-- 容器元素，用于挂载Vue实例 -->
+<div id="app">
+  <router-link to="/user/1">User 1</router-link>
+  <router-link to="/user/2">User 2</router-link>
+  <router-view></router-view>
+</div>
+
+<script>
+// 定义组件
+const UserProfile = {
+  template: '#user-profile-template',
+  props: ['userId'], // 确保这里定义了 'userId' 作为 prop
+  mounted() {
+    console.log('UserProfile mounted with userId:', this.userId);
+  }
+};
+
+// 定义路由
+const routes = [
+  { path: '/user/:id', component: UserProfile} // 确保这里设置为 true
+];
+
+// 创建路由实例
+const router = new VueRouter({
+  routes
+});
+
+// 创建Vue实例
+new Vue({
+  router
+}).$mount('#app');
+</script>
+
+</body>
+</html>

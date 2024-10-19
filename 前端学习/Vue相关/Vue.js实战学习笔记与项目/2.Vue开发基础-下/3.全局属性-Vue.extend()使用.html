@@ -1,0 +1,43 @@
+
+    <!-- 挂载点 -->
+    <div id="app"></div>
+
+    <!-- 引入Vue.js -->
+    <script src="vue.js"></script>
+    <script>
+        // 定义组件选项
+        var MyComponentOptions = {
+            template: '<div>A custom component!</div>'
+        };
+
+        // 使用 Vue.extend 创建组件构造器
+        var MyComponent = Vue.extend(MyComponentOptions);
+
+        // 创建组件实例并挂载到 #app 元素
+        new MyComponent().$mount('#app');
+    </script>
+</html>
+<!---
+extend使得组件更加可复用
+// 定义一个组件选项对象
+var MyComponentOptions = {
+  template: '<div>A custom component!</div>'
+};
+
+// 使用 Vue.extend 创建一个组件构造器
+var MyComponent = Vue.extend(MyComponentOptions);
+
+// 使用组件构造器创建一个新的组件实例，并将其挂载到 #app 上
+new MyComponent().$mount('#app');
+-->
+<!--=
+在上面的代码中，MyComponent 是一个基于 Vue.extend 创建的组件构造器。
+我们使用 new MyComponent() 创建了一个组件实例，
+并通过调用 $mount 方法将其挂载到 DOM 中的 #app 元素。
+这个例子展示了如何使用 Vue.extend 来创建一个全局组件构造器，
+并使用它来创建组件实例。然而，在大多数情况下，
+我们使用 Vue 提供的 Vue.component 方法来注册全局组件，
+这是一种更简单的方法。Vue.extend 主要用于创建可复用的组件构造器，
+当你需要更细粒度的控制时使用。
+
+-->

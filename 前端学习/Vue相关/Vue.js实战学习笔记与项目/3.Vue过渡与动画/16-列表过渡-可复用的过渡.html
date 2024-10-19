@@ -1,0 +1,48 @@
+<!-- ListTransition.vue 的 HTML 表示 -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vue List Transition</title>
+<style>
+  /* 定义 CSS 过渡类 */
+  .list-enter-active, .list-leave-active {
+    transition: all 1s;
+  }
+  .list-enter, .list-leave-to {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+</style>
+</head>
+<body>
+
+<!-- Transition Group 的 HTML 表示 -->
+<!-- 注意：这里的 transition-group 标签是 Vue 特定的，不是标准的 HTML -->
+<ul>
+  <!--
+    Vue 插槽内容，这里将插入列表项
+    <slot></slot>
+  -->
+</ul>
+
+<!-- 父组件中的列表过渡使用 -->
+<!-- 注意：这里的 list-transition 标签是 Vue 特定的，不是标准的 HTML -->
+<div>
+  <ul>
+    <!--
+      Vue v-for 指令的 HTML 表示
+      <li v-for="item in items" :key="item.id">
+        {{ item.text }}
+      </li>
+    -->
+    <!-- 示例列表项 -->
+    <li>Item 1</li>
+    <li>Item 2</li>
+    <li>Item 3</li>
+  </ul>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Complex Vue Router Example</title>
+</head>
+<body>
+    <div id="app">
+        <nav>
+            <router-link to="/">Home</router-link>
+            <router-link to="/user">User</router-link>
+            <router-link to="/settings">Settings</router-link>
+        </nav>
+        <router-view></router-view>
+    </div>
+
+    <!-- Templates -->
+    <template id="home-template">
+        <div>
+            <h1>Home</h1>
+            <p>Welcome to the home page!</p>
+        </div>
+    </template>
+
+    <template id="user-template">
+        <div>
+            <h1>User</h1>
+            <nav>
+                <router-link to="/user/profile/1">User Profile</router-link>
+                <router-link to="/user/settings">User Settings</router-link>
+            </nav>
+            <router-view></router-view>
+        </div>
+    </template>
+    
+
+    <template id="user-profile-template">
+        <div>
+            <h2>User Profile</h2>
+            <p>User ID: {{ $route.params.id }}</p>
+        </div>
+    </template>
+
+    <template id="user-settings-template">
+        <div>
+            <h2>User Settings</h2>
+            <p>Manage your user settings here.</p>
+        </div>
+    </template>
+
+    <template id="settings-template">
+        <div>
+            <h1>Settings</h1>
+            <p>Global application settings.</p>
+        </div>
+    </template>
+
+    <!-- Vue and Vue Router -->
+    <script src="https://unpkg.com/vue@2.6.14/dist/vue.js"></script>
+    <script src="https://unpkg.com/vue-router@3.5.3/dist/vue-router.js"></script>
+
+    <!-- Router and Components -->
+    <script>
+        // Define the components
+        const Home = {
+            template: '#home-template'
+        };
+
+        const User = {
+            template: '#user-template'
+        };
+
+        const UserProfile = {
+            template: '#user-profile-template'
+        };
+
+        const UserSettings = {
+            template: '#user-settings-template'
+        };
+
+        const Settings = {
+            template: '#settings-template'
+        };
+
+        // Define the routes
+        const routes = [
+            { path: '/', component: Home },
+            {
+                path: '/user',
+                component: User,
+                children: [
+                    { path: 'profile/:id', component: UserProfile },
+                    //{path:'profile/:id'}会将id传递给子组件
+                    //子组件会使用$routes.params.id来获取这个传递的值
+                    //注意：因为是传的id,所以用.id
+                    { path: 'settings', component: UserSettings }
+                ]
+            },
+            { path: '/settings', component: Settings }
+        ];
+
+        // Create the router instance and pass the `routes` option
+        const router = new VueRouter({
+            routes // short for `routes: routes`
+        });
+
+        // Create and mount the root instance.
+        new Vue({
+            router
+        }).$mount('#app');
+    </script>
+</body>
+</html>

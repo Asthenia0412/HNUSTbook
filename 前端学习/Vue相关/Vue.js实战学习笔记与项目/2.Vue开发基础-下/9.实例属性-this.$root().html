@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>E-commerce Example with Vue.js</title>
+</head>
+<body>
+    <div id="app">
+        <!-- 购物车信息 -->
+        <div>
+            购物车商品总数：{{ cartItemCount }}
+        </div>
+
+        <!-- 商品详情组件 -->
+        <product-detail
+            v-for="product in products"
+            :key="product.id"
+            :product="product"
+        ></product-detail>
+    </div>
+
+    <!-- 商品详情组件模板 -->
+    <template id="product-detail-template">
+        <div>
+            <h3>{{ product.name }}</h3>
+            <p>{{ product.description }}</p>
+            <button @click="addToCart">添加到购物车</button>
+        </div>
+    </template>
+
+    <script src="vue.js"></script>
+    <script>
+        // 商品详情组件定义
+        Vue.component('product-detail', {
+            template: '#product-detail-template',
+            props: ['product'],
+            methods: {
+                addToCart() {
+                    // 使用 this.$root 来访问根实例的方法和数据
+                    this.$root.updateCartItemCount(this.$root.cartItemCount + 1);
+                }
+            }
+        });
+
+        // 创建 Vue 根实例
+        new Vue({
+            el: '#app',
+            data: {
+                cartItemCount: 0, // 购物车商品总数
+                products: [ // 商品列表
+                    { id: 1, name: '商品A', description: '这是商品A的描述' },
+                    { id: 2, name: '商品B', description: '这是商品B的描述' }
+                    // 更多商品...
+                ]
+            },
+            methods: {
+                updateCartItemCount(count) {
+                    this.cartItemCount = count;
+                }
+            }
+        });
+    </script>
+</body>
+</html>

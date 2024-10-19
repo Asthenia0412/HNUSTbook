@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>E-commerce Product Detail Example</title>
+</head>
+<body>
+    <div id="app">
+        <!-- 商品详情组件 -->
+        <product-detail
+            :product-id="selectedProductId"
+        ></product-detail>
+    </div>
+
+    <!-- 商品详情组件的模板 -->
+    <template id="product-detail-template">
+        <div class="product-detail">
+            <h1>{{ product.name }}</h1>
+            <p>{{ product.price }}</p>
+            <p>{{ product.description }}</p>
+        </div>
+    </template>
+
+    <!-- 引入 Vue.js -->
+    <script src="vue.js"></script>
+    <script>
+        // 商品详情组件
+        Vue.component('product-detail', {
+            props: ['productId'],
+            data() {
+                return {
+                    product: null
+                };
+            },
+            created() {
+                this.fetchProductDetails(this.productId);
+            },
+            methods: {
+                fetchProductDetails(productId) {
+                    // 假设我们从一个API获取商品详情
+                    // 这里我们只是模拟数据
+                    this.product = {
+                        id: productId,
+                        name: 'Sample Product',
+                        price: 49.99,
+                        description: 'This is a sample product description.'
+                    };
+                }
+            },
+            template: '#product-detail-template',
+            mounted() {
+                // 访问组件的选项对象
+                console.log('Component options:', this.$options);
+            }
+        });
+
+        // 创建 Vue 实例
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                selectedProductId: 1 // 假设这是选中的商品ID
+            }
+        });
+    </script>
+</body>
+</html>

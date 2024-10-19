@@ -1,0 +1,101 @@
+<!--
+1.每个routes数组中都有若干个{}，其中有一项：meta:{title: 'Sub Page'}这里是动态设置路由的标题
+2.beforeEnter钩子
+A.beforeEnter有三个参数,
+    to:即将要进入的目标路由对象
+    from:正在离开的对象
+    next()：一个函数，用于解析这个钩子，我们要析构这个钩子必须嗲用next()
+这玩意通常用来做路由守卫-校验用户权限，是否可以访问这个页面
+
+
+
+
+
+
+
+-->
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vue Router Example</title>
+<script src="https://unpkg.com/vue@2.6.14/dist/vue.js"></script>
+<script src="https://unpkg.com/vue-router@3.5.3/dist/vue-router.js"></script>
+</head>
+<body>
+
+<!-- 组件模板 -->
+<template id="home-template">
+  <div>
+    <h1>Home Page</h1>
+    <!-- 子路由内容将在这里渲染 -->
+  </div>
+</template>
+
+<template id="about-template">
+  <div>
+    <h1>About Page</h1>
+  </div>
+</template>
+
+<template id="subpage-template">
+  <div>
+    <h2>Sub Page</h2>
+  </div>
+</template>
+
+<!-- 容器元素，用于挂载Vue实例 -->
+<div id="app">
+  <router-view></router-view>
+</div>
+
+<script>
+// 定义组件
+const Home = { template: '#home-template' };
+const About = { template: '#about-template' };
+const SubPage = { template: '#subpage-template' };
+
+// 定义路由
+const routes = [
+  {
+    path: '/home', // 匹配的路径
+    name: 'home', // 路由名称
+    component: Home, // 路由对应的组件
+    meta: { title: 'Home' }, // 路由元信息
+    children: [ // 嵌套路由
+      {
+        path: 'subpage', // 子路由路径
+        component: SubPage, // 子路由对应的组件
+        meta: { title: 'Sub Page' } // 子路由元信息
+      }
+    ],
+    beforeEnter: (to, from, next) => { // 路由进入前的钩子
+      // 可以在这里执行一些操作，比如验证权限
+      next();
+    }
+  },
+  {
+    path: '/about', // 匹配的路径
+    name: 'about', // 路由名称
+    component: About, // 路由对应的组件
+    meta: { title: 'About' }, // 路由元信息
+    // 可以添加更多的路由属性，如 alias, redirect 等
+  }
+];
+
+// 创建路由实例
+const router = new VueRouter({
+  routes // （缩写）相当于 routes: routes
+});
+
+// 创建Vue实例
+new Vue({
+  router
+}).$mount('#app');
+</script>
+
+</body>
+</html>

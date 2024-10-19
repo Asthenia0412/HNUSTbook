@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Vue Mixins in E-commerce Example</title>
+</head>
+<body>
+  <div id="app">
+    <!-- 商品列表组件 -->
+    <product-list></product-list>
+    <!-- 商品详情组件 -->
+    <product-detail :product="selectedProduct"></product-detail>
+  </div>
+
+  <!-- 商品列表组件模板 -->
+  <template id="product-list-template">
+    <div>
+      <h2>商品列表</h2>
+      <ul>
+        <li v-for="product in products" :key="product.id">
+          {{ product.name }} - {{ formatPrice(product.price) }}
+        </li>
+      </ul>
+    </div>
+  </template>
+
+  <!-- 商品详情组件模板 -->
+  <template id="product-detail-template">
+    <div>
+      <h2>商品详情</h2>
+      <p>商品名称：{{ product.name }}</p>
+      <p>商品价格：{{ formatPrice(product.price) }}</p>
+    </div>
+  </template>
+
+  <script src="vue.js"></script>
+  <script>
+    // 价格格式化 mixin
+    const priceMixin = {
+        methods:{
+            formatPrice(value){
+                return `$${value.toFixed(2)}`
+            }
+        }
+    }
+
+    // 商品列表组件
+    Vue.component('product-list', {
+      mixins: [priceMixin],
+      data() {
+        return {
+          products: [
+            { id: 1, name: '商品A', price: 29.99 },
+            { id: 2, name: '商品B', price: 39.99 }
+          ]
+        };
+      },
+      template: '#product-list-template'
+    });
+
+    // 商品详情组件
+    Vue.component('product-detail', {
+      mixins: [priceMixin],
+      props: ['product'], // 接收一个商品对象作为属性
+      template: '#product-detail-template'
+    });
+
+    // 创建 Vue 实例
+    new Vue({
+      el: '#app',
+      data: {
+        selectedProduct: { id: 1, name: '商品A', price: 29.99 } // 假设这是选中的商品
+      }
+    });
+  </script>
+</body>
+</html>

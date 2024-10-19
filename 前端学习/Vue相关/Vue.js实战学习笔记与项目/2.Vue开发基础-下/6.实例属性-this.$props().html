@@ -1,0 +1,62 @@
+<!--
+使用this.$props可以输出什么呢?
+可以在控制台看到props中所有属性 以及他们的get和set方法
+
+
+
+
+
+
+
+-->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>E-commerce Product List</title>
+</head>
+<body>
+    <div id="app">
+        <div v-for="product in products" :key="product.id">
+            <product-item
+                :product-id="product.id"
+                :product-name="product.name"
+                :product-price="product.price"
+                :product-image="product.image"
+                :product-rating="product.rating"
+            ></product-item>
+        </div>
+    </div>
+
+    <!-- 引入 Vue.js -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+    <script>
+        // 商品组件
+        Vue.component('product-item', {
+            props: ['productId', 'productName', 'productPrice', 'productImage', 'productRating'],
+            template: `
+                <div class="product">
+                    <img :src="productImage" :alt="productName" />
+                    <h3>{{ productName }}</h3>
+                    <p>Price: {{ productPrice }}</p>
+                    <p>Rating: {{ productRating }}/5</p>
+                </div>
+            `,
+            mounted() {
+                console.log('Product props:', this.$props);
+            }
+        });
+
+        // 创建 Vue 实例
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                products: [
+                    { id: 1, name: 'Product A', price: 29.99, image: 'path/to/image-a.jpg', rating: 4.5 },
+                    { id: 2, name: 'Product B', price: 39.99, image: 'path/to/image-b.jpg', rating: 3.8 },
+                    // 更多商品...
+                ]
+            }
+        });
+    </script>
+</body>
+</html>

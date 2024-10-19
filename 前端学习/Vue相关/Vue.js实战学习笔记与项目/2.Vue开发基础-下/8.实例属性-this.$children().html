@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>E-commerce Product List Example</title>
+</head>
+<body>
+    <div id="app">
+        <!-- 商品列表组件 -->
+        <product-list :products="products"></product-list>
+    </div>
+
+    <!-- 商品详情组件的模板 -->
+    <template id="product-detail-template">
+        <div class="product-detail">
+            <h1>{{ product.name }}</h1>
+            <p>{{ product.price }}</p>
+            <p>{{ product.description }}</p>
+        </div>
+    </template>
+
+    <!-- 商品列表组件的模板 -->
+    <template id="product-list-template">
+        <div class="product-list">
+            <product-detail
+                v-for="product in products"
+                :key="product.id"
+                :product-id="product.id"
+            ></product-detail>
+        </div>
+    </template>
+
+    <!-- 引入 Vue.js -->
+    <script src="vue.js"></script>
+    <script>
+        // 商品详情组件
+        Vue.component('product-detail', {
+            props: ['productId'],
+            data() {
+                return {
+                    product: null
+                };
+            },
+            created() {
+                this.fetchProductDetails(this.productId);
+            },
+            methods: {
+                fetchProductDetails(productId) {
+                    // 假设我们从一个API获取商品详情
+                    // 这里我们只是模拟数据
+                    this.product = {
+                        id: productId,
+                        name: `Product ${productId}`,
+                        price: 49.99,
+                        description: 'This is a sample product description.'
+                    };
+                }
+            },
+            template: '#product-detail-template'
+        });
+
+        // 商品列表组件
+        Vue.component('product-list', {
+            props: ['products'],
+            template: '#product-list-template',
+            mounted() {
+                // 访问所有子组件实例
+                console.log('Product Details Children:', this.$children);
+                // 假设我们想要访问第一个子组件的商品名称
+                if (this.$children.length > 0) {
+                    console.log('First Product Name:', this.$children[0].product.name);
+                }
+            }
+        });
+
+        // 创建 Vue 实例
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                products: [
+                    { id: 1, name: 'Product 1' },
+                    { id: 2, name: 'Product 2' },
+                    // 更多商品...
+                ]
+            }
+        });
+    </script>
+</body>
+</html>

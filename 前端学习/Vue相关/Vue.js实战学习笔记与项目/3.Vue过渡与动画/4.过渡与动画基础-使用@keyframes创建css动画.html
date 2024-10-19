@@ -1,0 +1,65 @@
+<!--
+淡入淡出动画 (fade): 这个动画简单地改变了元素的透明度，使元素淡入或淡出。
+颜色变换动画 (color-change): 这个动画使用 @keyframes 规则定义了一个颜色变换效果，将文本颜色从红色变为绿色，再变为蓝色。
+在 <transition> 组件中，
+    我们通过 name 属性指定了动画名称，Vue 会自动在进入和离开时添加相应的过渡类名。对于颜色变换动画，我们通过 animation 属性将 @keyframes 动画应用到元素上，并且对于离开状态，我们使用了 reverse 关键字来使动画反向播放。
+
+点击按钮可以触发动画，从而看到定义的动画效果。
+
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vue Transition with CSS Keyframes</title>
+<script src="vue.js"></script>
+<style>
+/* 定义淡入淡出动画 */
+.fade-enter-active, .fade-leave-active {
+  transition: opacity 1s;
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active 在 Vue 2.1.8+ */ {
+  opacity: 0;
+}
+
+/* 定义颜色变换动画 */
+@keyframes color-change {
+  0% { color: red; }
+  50% { color: green; }
+  100% { color: blue; }
+}
+
+/* 将颜色变换动画应用到进入和离开状态 */
+.color-change-enter-active {
+  animation: color-change 2s;
+}
+.color-change-leave-active {
+  animation: color-change 2s reverse;
+}
+</style>
+</head>
+<body>
+<div id="app">
+  <button @click="show = !show">Toggle Fade</button>
+  <transition name="fade">
+    <p v-if="show">This is a fade transition.</p>
+  </transition>
+
+  <button @click="colorShow = !colorShow">Toggle Color Change</button>
+  <transition name="color-change">
+    <p v-if="colorShow">This is a color change animation.</p>
+  </transition>
+</div>
+
+<script>
+new Vue({
+  el: '#app',
+  data: {
+    show: true,
+    colorShow: true
+  }
+});
+</script>
+</body>
+</html>

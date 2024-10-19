@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Vue createElement Example</title>
+</head>
+<body>
+  <div id="app">
+    <product-list :products="products"></product-list>
+  </div>
+
+  <!-- 商品列表组件模板（仅作为参考，实际不会在 render 函数中使用） -->
+  <template id="product-list-template">
+    <div class="product-list">
+      <div v-for="product in products" :key="product.id" class="product-item">
+        <h3>{{ product.name }}</h3>
+        <p>{{ product.description }}</p>
+        <span class="price">{{ product.price | currency }}</span>
+      </div>
+    </div>
+  </template>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+  <script>
+    // 创建一个使用 render 函数的商品列表组件
+    Vue.component('product-list', {
+      props: ['products'],
+      filters: {
+        currency(value) {
+          return `$${value.toFixed(2)}`;
+        }
+      },
+      render(createElement) {
+        // 使用 createElement 创建商品列表的 VNode
+        return createElement('div', { class: 'product-list' }, [
+          this.products.map(product => {
+            return createElement('div', { key: product.id, class: 'product-item' }, [
+              createElement('h3', product.name),
+              createElement('p', product.description),
+              createElement('span', { class: 'price' }, this.$options.filters.currency(product.price))
+            ]);
+          })
+        ]);
+      }
+    });
+
+    // 创建 Vue 实例
+    new Vue({
+      el: '#app',
+      data: {
+        products: [
+          { id: 1, name: '商品A', description: '商品A描述', price: 19.99 },
+          { id: 2, name: '商品B', description: '商品B描述', price: 29.99 },
+          { id: 3, name: '商品C', description: '商品C描述', price: 39.99 }
+        ]
+      }
+    });
+  </script>
+</body>
+</html>

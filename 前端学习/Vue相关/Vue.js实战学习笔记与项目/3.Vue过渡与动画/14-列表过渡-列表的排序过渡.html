@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vue List Sort Transition</title>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+<style>
+.list-move {
+  transition: transform 0.5s;
+}
+</style>
+</head>
+<body>
+<div id="app">
+  <button @click="shuffle">Shuffle</button>
+  <transition-group name="list" tag="ul">
+    <li v-for="item in items" :key="item.id">
+      {{ item.text }}
+    </li>
+  </transition-group>
+</div>
+
+<script>
+new Vue({
+  el: '#app',
+  data: {
+    items: [
+      { id: 1, text: 'Item 1' },
+      { id: 2, text: 'Item 2' },
+      { id: 3, text: 'Item 3' },
+      { id: 4, text: 'Item 4' }
+    ]
+  },
+  methods: {
+    shuffle() {
+      this.items = this.items.sort(() => Math.random() - 0.5);
+    }
+  }
+});
+</script>
+</body>
+</html>

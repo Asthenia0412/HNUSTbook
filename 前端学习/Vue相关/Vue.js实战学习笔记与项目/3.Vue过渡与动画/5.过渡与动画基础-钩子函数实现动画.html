@@ -1,0 +1,93 @@
+<!--
+在这个示例中，我们定义了一个蓝色的圆形 (ball)，
+并使用 Vue 的 <transition> 组件来处理它的进入和离开动画。
+我们为 <transition> 组件添加了六个钩子函数：
+
+before-enter: 在元素插入 DOM 前调用。
+enter: 在元素被插入 DOM 后调用。这个函数接收 done 回调，当过渡结束后应该调用它。
+after-enter: 当进入过渡完成时调用。
+before-leave: 在离开过渡开始前调用。
+leave: 在离开过渡开始时调用。同样接收 done 回调。
+after-leave: 当离开过渡完成时调用。
+在 JavaScript 钩子中，我们通过改变元素的 
+transform 属性来实现缩放效果，并使用 CSS 过渡来平滑动画。
+当动画开始时，我们使用 el.offsetWidth 来强制浏览器重新计算元素的样式，
+这是确保过渡效果能够正常触发的常用技巧。
+最后，我们通过调用 done() 来通知 Vue 动画已经完成。
+
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vue Transition with JavaScript Hooks</title>
+<script src="vue.js"></script>
+<style>
+/* 定义初始和结束状态的样式 */
+.ball {
+  width: 50px;
+  height: 50px;
+  background-color: blue;
+  border-radius: 50%;
+  transition: transform 1s;
+}
+</style>
+</head>
+<body>
+<div id="app">
+  <button @click="show = !show">Toggle</button>
+  <transition
+    @before-enter="beforeEnter"
+    @enter="enter"
+    @after-enter="afterEnter"
+    @before-leave="beforeLeave"
+    @leave="leave"
+    @after-leave="afterLeave"
+  >
+    <div class="ball" v-if="show"></div>
+  </transition>
+</div>
+
+<script>
+new Vue({
+  el: '#app',
+  data: {
+    show: true
+  },
+  methods: {
+    // 进入前
+    beforeEnter(el) {
+      el.style.transform = 'scale(0)';
+    },
+    // 进入中
+    enter(el, done) {
+      el.offsetWidth; // 触发重排
+      el.style.transform = 'scale(1)';
+      el.style.transition = 'transform 1s ease';
+      done(); // 调用 done() 以通知 Vue 动画完成
+    },
+    // 进入后
+    afterEnter(el) {
+      // 动画完成后的操作
+    },
+    // 离开前
+    beforeLeave(el) {
+      // 离开前的操作
+    },
+    // 离开中
+    leave(el, done) {
+      el.offsetWidth; // 触发重排
+      el.style.transform = 'scale(0)';
+      el.style.transition = 'transform 1s ease';
+      done(); // 调用 done() 以通知 Vue 动画完成
+    },
+    // 离开后
+    afterLeave(el) {
+      // 动画完成后的操作
+    }
+  }
+});
+</script>
+</body>
+</html>

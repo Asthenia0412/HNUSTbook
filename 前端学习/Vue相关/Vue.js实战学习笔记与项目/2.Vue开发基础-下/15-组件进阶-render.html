@@ -1,0 +1,55 @@
+<!--
+在这个例子中，my-component 组件使用了 render 函数来创建虚拟节点。render 函数接受一个 createElement 方法作为参数，该方法用于创建虚拟节点。我们通过遍历 items 数组并使用 createElement 来创建每个列表项的 VNode。虽然我们定义了一个 <template> 标签作为参考，但实际上 render 函数直接操作虚拟节点，并不使用这个模板。
+
+
+-->
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Vue Render Function Example</title>
+</head>
+<body>
+  <div id="app">
+    <my-component :items="items"></my-component>
+  </div>
+
+  <!-- 使用 template 标签作为参考，实际不会在 render 函数中使用 -->
+  <template id="my-component-template">
+    <div>
+      <ul>
+        <li v-for="item in items" :key="item.id">
+          {{ item.text }}
+        </li>
+      </ul>
+    </div>
+  </template>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+  <script>
+    // 创建一个使用 render 函数的组件
+    Vue.component('my-component', {
+      props: ['items'],
+      render(createElement) {
+        // 使用 createElement 函数创建 VNode
+        return createElement('div', [
+          createElement('ul', this.items.map(item => {
+            return createElement('li', item.text);
+          }))
+        ]);
+      }
+    });
+
+    // 创建 Vue 实例
+    new Vue({
+      el: '#app',
+      data: {
+        items: [
+          { id: 1, text: 'Item 1' },
+          { id: 2, text: 'Item 2' },
+          { id: 3, text: 'Item 3' }
+        ]
+      }
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,77 @@
+<!---
+事实上：本代码执行后的结果是：console报错：显示userName没有被定义
+但是console会打印出userName
+这是为什么呢？
+显示userName没有被定义的原因是：child组件中没有设置props:['userName'] 所以收不到
+我为什么要这样做呢?
+是因为this.$attrs的意义就是表达出父组件想要传递给子组件 但是子组件没有在props里面接收的属性
+所以我们在mount()的console发现，$attrs是可以捕获这个userName的。
+
+
+
+
+
+-->
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Vue $attrs Example</title>
+</head>
+<body>
+    <div id="app">
+        <!--父组件-->
+        <parent-component
+            :user-name="userName"
+            :user-email="userEmail"
+            class="custom-class"
+            style="color:red">
+        </parent-component>
+    </div>
+
+    <!-- 引入 Vue.js，确保路径正确或者使用CDN -->
+    <script src="vue.js"></script>
+
+    <!-- 子组件模板 -->
+    <template id="child">
+        <div>
+            <p>User name: {{ userName }}</p>
+            <p>User Email: {{ userEmail }}</p>
+        </div>
+    </template>
+
+    <!-- 父组件模板 -->
+    <template id="parent">
+        <div>
+            <child-component v-bind="$attrs"></child-component>
+        </div>
+    </template>
+
+    <script>
+        Vue.component('child-component', {
+            template: '#child',
+            // 移除 'userName' 从 props，使其进入 $attrs
+            props: ['userEmail'], // 假设我们只接收 userEmail 作为 prop
+            mounted() {
+                console.log(this.$attrs); // 这里将打印出 { "user-name": "测试名字" }
+            }
+        });
+
+        Vue.component('parent-component', {
+            template: '#parent',
+            // 不需要在这里声明 props，或者只声明需要的 props
+            mounted() {
+                console.log(this.$attrs); // 这里将打印出 { "user-name": "测试名字", "user-email": "user@example.com" }
+            }
+        });
+
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                userName: '测试名字',
+                userEmail: 'user@example.com'
+            }
+        });
+    </script>
+</body>
+</html>

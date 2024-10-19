@@ -1,0 +1,86 @@
+<!--
+引入 Vue 和 Vue Router: 在 HTML 中，我们通过 script 标签引入了 
+Vue 和 Vue Router 的库。
+这些库提供了必要的功能来创建和管理单页面应用程序的路由。
+
+定义组件: 我们定义了两个简单的 Vue 组件 Home 和 About，
+它们分别代表不同的页面内容。
+
+定义路由: 我们创建了一个路由数组 routes，
+其中包含了每个路由的路径（path）和对应的组件（component）。
+当路由的路径与浏览器地址栏中的 URL 匹配时，对应的组件就会被渲染。
+
+创建路由实例: 使用 VueRouter 构造函数创建一个路由实例，
+并将定义好的路由数组传递给它。
+
+创建和挂载 Vue 实例: 创建一个新的 Vue 实例，
+并将路由实例作为选项传递给它。然后，
+使用 $mount 方法将 Vue 实例挂载到页面中的 #app 元素上。
+
+路由链接和路由出口: 
+<router-link> 是一个组件，用于创建导航链接，
+    它的 to 属性指定目标路由的路径。 <router-view> 
+        是一个组件，它是一个容器，用于显示当前路由对应的组件内容。
+        当用户点击 <router-link> 时，Vue Router 
+            会根据 to 属性指定的路径更新浏览器地址栏的 URL，
+            并且将相应的组件渲染到 <router-view> 中。
+
+
+
+
+
+
+
+
+-->
+
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width,initial-scale">
+        <title>Vue Router Example</title>
+    </head>
+    <body>
+        <div id="app">
+            <!--路由连接-->
+            <router-link to="/">Home</router-link>
+            <router-link to="/about">About</router-link>
+            <!--路由出口-->
+            <!--倘若删除router-view 上面的router-link无法实现跳转功能-->
+            <router-view></router-view>
+        </div>
+        <script src="vue.js"></script>
+        <script src="https://unpkg.com/vue-router@3.5.3/dist/vue-router.js"></script>
+        <!--Vue路由实例与路由配置-->
+        <script>
+            const Home = {
+                template:'#Home'
+            }
+            const About = {
+                template:'#About'
+            }
+            const routes=[
+                {path:'/',component: Home},
+                {path:'/about',component: About}
+            ]
+            const router = new VueRouter({
+                routes: routes
+            })
+            var vm = new Vue({
+                router
+            }).$mount('#app');
+        </script>
+    </body>
+</html>
+<template id="Home">
+    <div>
+        这里是HomePage
+    </div>
+</template>
+<template id="About">
+    <div>
+        这里是关于页
+    </div>
+</template>

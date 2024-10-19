@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vue Multiple Components Transition</title>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+<style>
+/* 过渡效果 */
+.component-fade-enter-active, .component-fade-leave-active {
+  transition: opacity 0.3s ease;
+}
+.component-fade-enter, .component-fade-leave-to {
+  opacity: 0;
+}
+</style>
+</head>
+<body>
+<div id="app">
+  <button @click="currentComponent = currentComponent === 'ComponentA' ? 'ComponentB' : 'ComponentA'">
+    Toggle Component
+  </button>
+  <transition name="component-fade" mode="out-in">
+    <component :is="currentComponent"></component>
+  </transition>
+</div>
+
+<script>
+// 定义两个组件
+Vue.component('ComponentA', {
+  template: '<div>Component A</div>'
+});
+
+Vue.component('ComponentB', {
+  template: '<div>Component B</div>'
+});
+
+new Vue({
+  el: '#app',
+  data: {
+    currentComponent: 'ComponentA'
+  }
+});
+</script>
+</body>
+</html>

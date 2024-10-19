@@ -1,0 +1,140 @@
+<!--
+1.如何触发路由跳转?
+比方说：在注册完成后，得登录了。我们通常是在注册完成的方法中
+this.$router.push('/login')
+2.切记切记：在首页得<router-link>记得要在这填充文字</router-link>且中间得填充文字，不然标签是加载不出来的
+
+
+
+
+
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vue Router Login and Registration Example</title>
+<script src="vue.js"></script>
+<script src="https://unpkg.com/vue-router@3.5.3/dist/vue-router.js"></script>
+</head>
+<body>
+
+<!-- 组件模板 -->
+<template id="login-template">
+  <div>
+    <h2>Login</h2>
+    <form @submit.prevent="login">
+      <input type="text" v-model="username" placeholder="Username" />
+      <input type="password" v-model="password" placeholder="Password" />
+      <button type="submit">Login</button>
+    </form>
+  </div>
+</template>
+
+<template id="register-template">
+  <div>
+    <h2>Register</h2>
+    <form @submit.prevent="register">
+      <input type="text" v-model="username" placeholder="Username" />
+      <input type="email" v-model="email" placeholder="Email" />
+      <input type="password" v-model="password" placeholder="Password" />
+      <button type="submit">Register</button>
+    </form>
+  </div>
+</template>
+
+<template id="dashboard-template">
+  <div>
+    <h1>Welcome to Your Dashboard</h1>
+  </div>
+</template>
+
+<!-- 容器元素，用于挂载Vue实例 -->
+<div id="app">
+    
+      <router-link to="/login">登录逻辑</router-link>
+      <router-link to="/register">注册逻辑</router-link>
+    
+    <router-view></router-view>
+  </div>
+
+<script>
+// 定义组件
+const Login = {
+  template: '#login-template',
+  data() {
+    return {
+      username: '',
+      password: ''
+    };
+  },
+  methods: {
+    login() {
+      // 登录逻辑
+      console.log('Logging in with', this.username, this.password);
+      // 假设登录成功，跳转到仪表盘
+      this.$router.push('/dashboard');
+    }
+  }
+};
+
+const Register = {
+  template: '#register-template',
+  data() {
+    return {
+      username: '',
+      email: '',
+      password: ''
+    };
+  },
+  methods: {
+    register() {
+      // 注册逻辑
+      console.log('Registering with', this.username, this.email, this.password);
+      // 假设注册成功，跳转到登录页面
+      this.$router.push('/login');
+    }
+  }
+};
+
+const Dashboard = {
+  template: '#dashboard-template'
+};
+
+// 定义路由
+const routes = [
+  { path: '/login', component: Login },
+  { path: '/register', component: Register },
+  { path: '/dashboard', component: Dashboard, meta: { requiresAuth: true } }
+];
+
+// 创建路由实例
+const router = new VueRouter({
+  routes
+});
+
+// 全局前置守卫，用于权限校验
+router.beforeEach((to, from, next) => {
+  if (to.matched.some(record => record.meta.requiresAuth)) {
+    // 这里可以添加权限校验逻辑
+    // 假设用户已经登录
+    const isAuthenticated = true; // 应该从实际的用户状态管理中获取
+    if (!isAuthenticated) {
+      next('/login');
+    } else {
+      next();
+    }
+  } else {
+    next();
+  }
+});
+
+// 创建Vue实例
+new Vue({
+  router
+}).$mount('#app');
+</script>
+
+</body>
+</html>

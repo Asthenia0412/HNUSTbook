@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vue List Stagger Transition</title>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/velocity/1.5.2/velocity.min.js"></script>
+</head>
+<body>
+<div id="app">
+  <button @click="shuffle">Shuffle</button>
+  <transition-group
+    name="stagger"
+    tag="ul"
+    :css="false"
+    @before-enter="beforeEnter"
+    @enter="enter"
+    @leave="leave"
+  >
+    <li v-for="(item, index) in items" :key="item.id" :data-index="index">
+      {{ item.text }}
+    </li>
+  </transition-group>
+</div>
+
+<script>
+new Vue({
+  el: '#app',
+  data: {
+    items: [
+      { id: 1, text: 'Item 1' },
+      { id: 2, text: 'Item 2' },
+      { id: 3, text: 'Item 3' },
+      { id: 4, text: 'Item 4' }
+    ]
+  },
+  methods: {
+    shuffle() {
+      this.items = this.items.sort(() => Math.random() - 0.5);
+    },
+    beforeEnter(el) {
+      el.style.opacity = 0;
+      el.style.transform = 'translateY(100px)';
+    },
+    enter(el, done) {
+      const delay = el.dataset.index * 150;
+      setTimeout(() => {
+        Velocity(el, { opacity: 1, translateY: 0 }, { complete: done });
+      }, delay);
+    },
+    leave(el, done) {
+      const delay = el.dataset.index * 150;
+      setTimeout(() => {
+        Velocity(el, { opacity: 0, translateY: '-100px' }, { complete: done });
+      }, delay);
+    }
+  }
+});
+</script>
+</body>
+</html>

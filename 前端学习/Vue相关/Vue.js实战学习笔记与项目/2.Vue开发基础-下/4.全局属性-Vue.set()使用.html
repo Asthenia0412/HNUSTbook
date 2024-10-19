@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Todo List</title>
+</head>
+<body>
+<div id="app">
+  <input type="text" v-model="newTodo" @keyup.enter="addTodo">
+  <button @click="addTodo">Add Todo</button>
+  <ul>
+    <li v-for="(todo, index) in todos" :key="index">
+      <input type="checkbox" v-model="todo.done">
+      <span :class="{ done: todo.done }">{{ todo.text }}</span>
+    </li>
+  </ul>
+</div>
+
+<script src="vue.js"></script>
+<script>
+var VM =new Vue({
+  el: '#app',
+  data: {
+    newTodo: '',
+    todos: []
+  },
+  methods: {
+    addTodo() {
+      if (this.newTodo.trim() !== '') {
+        // 这里使用 Vue.set 是为了确保新添加的待办事项是响应式的
+        Vue.set(this.todos, this.todos.length, { //第一个参量是在哪添加 第二个参量是允许的长度 第三个参量是具体添加的内容 分为文本和done
+          text: this.newTodo,
+          done: false
+        });
+        this.newTodo = ''; // 清空输入框
+      }
+    }
+  }
+});
+/**
+ * 该特性在Vue3被移除-
+ * 本质是数组是响应式的，但是vue无法让数组内的元素也响应式，所以弄了vue.set出来
+ * 
+ * 响应式更新： 
+ * 当我们通过 this.todos.push({ text: this.newTodo, done: false }) 
+ * 添加新待办事项时，虽然数组 todos 会更新，
+ * 但如果Vue无法追踪到这个变化（特别是在某些情况下，比如直接设置数组的长度）
+ * ，则不会触发视图更新。使用 Vue.set 确保了新添加的待办事项是响应式的，
+ * Vue可以追踪到这个变化，并且会相应地更新视图。
+保持数组的响应式：
+ Vue 不能检测到通过索引直接设置数组项或修改数组长度的变化。
+ Vue.set 提供了一种官方的方式来更新数组，同时保持其响应式。
+跨组件状态管理：
+ 在更复杂的业务场景中，可能需要在不同的组件之间共享状态。
+ 如果直接修改数组，可能会导致状态不一致。
+ 使用 Vue.set 可以确保状态的改变是可追踪的，这对于状态管理和调试来说非常重要。
+在这个例子中，使用 Vue.set 确保了每当用户添加新的待办事项时，
+列表都会即时更新，从而提供了更好的用户体验。
+*/
+</script>
+</body>
+</html>

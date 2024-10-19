@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vue Transition Example</title>
+<script src="vue.js"></script>
+<style>
+/* 定义进入和离开的过渡状态 */
+.fade-enter-active, .fade-leave-active {
+  transition: opacity 0.5s;
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active in <2.1.8 */ {
+  opacity: 0;
+}
+</style>
+</head>
+<body>
+<div id="app">
+  <button v-on:click="show = !show">Toggle</button>
+  <transition name="fade">
+    <p v-if="show">Hello Vue!</p>
+  </transition>
+</div>
+
+<script>
+new Vue({
+  el: '#app',
+  data: {
+    show: true
+  }
+});
+</script>
+</body>
+</html>

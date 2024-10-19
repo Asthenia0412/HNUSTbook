@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vue Multiple Elements Transition</title>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+<style>
+/* 定义初始和结束状态的样式 */
+.list-item {
+  display: inline-block;
+  margin-right: 10px;
+}
+/* 过渡效果 */
+.fade-enter-active, .fade-leave-active {
+  transition: opacity 1s;
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active in <2.1.8 */ {
+  opacity: 0;
+}
+</style>
+</head>
+<body>
+<div id="app">
+  <button @click="add">Add</button>
+  <button @click="remove">Remove</button>
+  <transition-group name="fade" tag="ul">
+    <li v-for="item in items" :key="item" class="list-item">
+      {{ item }}
+    </li>
+  </transition-group>
+</div>
+
+<script>
+new Vue({
+  el: '#app',
+  data: {
+    items: [1, 2, 3, 4, 5],
+    nextNum: 6
+  },
+  methods: {
+    randomIndex: function () {
+      return Math.floor(Math.random() * this.items.length);
+    },
+    add: function () {
+      this.items.splice(this.randomIndex(), 0, this.nextNum++);
+    },
+    remove: function () {
+      this.items.splice(this.randomIndex(), 1);
+    }
+  }
+});
+</script>
+</body>
+</html>

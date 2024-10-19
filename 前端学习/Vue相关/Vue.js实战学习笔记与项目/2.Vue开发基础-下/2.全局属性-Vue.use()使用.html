@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Vue Use Example</title>
+</head>
+<body>
+    <div id="app">
+        <button @click="sayHello">Say Hello</button>
+    </div>
+
+    <!-- 引入Vue.js -->
+    <script src="vue.js"></script>
+    <script>
+        /**
+         * 在Vue中，Vue.use 方法用于安装Vue插件。
+         * 插件通常是一个包含 install 方法的对象，或者是一个提供 install 方法的函数。
+         * 当使用 Vue.use 安装插件时，
+         * Vue会调用插件的 install 方法，并将Vue构造函数作为第一个参数传入。
+         * 下面是个使用 Vue.use 安装自定义插件的例子。
+         * 我们将创建一个简单的插件，该插件为Vue实例添加一个全局方法 $sayHello，并在控制台输出一条问候信息。
+         * 首先，定义一个插件对象，它有一个 install 方法：
+         * 
+         * 在这个例子中，我们定义了一个名为 MyPlugin 的插件，
+         * 并在其 install 方法中为Vue的原型添加了一个名为 $sayHello 的方法。
+         * 然后，我们使用 Vue.use(MyPlugin) 安装了这个插件。
+         * 在Vue实例中，我们定义了一个 sayHello 方法，
+         * 它调用了通过插件添加的 $sayHello 方法。点击页面上的按钮时，
+         * 将会调用这个方法，并在控制台输出一条问候信息。
+         * Vue.use 应该在创建Vue实例之前调用，
+         * 以确保插件在所有组件中可用。
+         * 在上面的例子中，我们在创建Vue实例之前调用了 Vue.use(MyPlugin)。
+        */
+        // 定义插件
+        const MyPlugin = {
+            install(Vue, options) {
+                // 添加一个全局方法或属性
+                Vue.prototype.$sayHello = function (msg) {
+                    console.log(msg || 'Hello from MyPlugin!');
+                }
+            }
+        };
+
+        // 使用Vue.use安装插件
+        Vue.use(MyPlugin);
+
+        // 创建Vue实例
+        new Vue({
+            el: '#app',
+            methods: {
+                sayHello() {
+                    // 使用插件提供的全局方法
+                    this.$sayHello('Hello from Vue instance!');
+                }
+            }
+        });
+    </script>
+</body>
+</html>

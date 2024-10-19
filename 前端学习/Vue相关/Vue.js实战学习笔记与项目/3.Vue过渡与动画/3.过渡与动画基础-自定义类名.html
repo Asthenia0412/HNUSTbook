@@ -1,0 +1,55 @@
+<!--
+enter-active-class：定义进入过渡生效时的状态。
+leave-active-class：定义离开过渡生效时的状态。
+enter-class：定义进入过渡的开始状态。
+leave-to-class：定义离开过渡的结束状态。
+
+
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vue Custom Transition Class Names Example</title>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+<style>
+/* 自定义进入过渡类 */
+.custom-enter-active {
+  transition: opacity 1s;
+}
+
+/* 自定义离开过渡类 */
+.custom-leave-active {
+  transition: opacity 1s;
+}
+
+/* 进入过渡的开始状态和离开过渡的结束状态 */
+.custom-enter, .custom-leave-to {
+  opacity: 0;
+}
+</style>
+</head>
+<body>
+<div id="app">
+  <button @click="show = !show">Toggle</button>
+  <transition
+    enter-active-class="custom-enter-active"
+    leave-active-class="custom-leave-active"
+    enter-class="custom-enter"
+    leave-to-class="custom-leave-to"
+  >
+    <p v-if="show">Hello Vue!</p>
+  </transition>
+</div>
+
+<script>
+new Vue({
+  el: '#app',
+  data: {
+    show: true
+  }
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,65 @@
+<!--
+在这个示例中，我们创建了一个红色的小球，
+并通过点击按钮来控制它的显示与隐藏。
+当小球进入或离开视图时，我们使用 Velocity.js 来定义它的动画。
+
+以下是关键点：
+
+在 beforeEnter 钩子中，我们设置了初始的透明度为 0。
+在 enter 钩子中，我们使用 Velocity.js 的 Velocity(el, properties, options) 函数来定义动画。这里我们让元素的透明度变为 1，并使用 scale 属性来实现放大效果。duration 选项设置了动画的持续时间，而 complete 选项是一个回调函数，当动画完成后会被调用。
+在 leave 钩子中，我们同样使用 Velocity.js 来定义小球离开时的动画，
+将透明度变为 0 并缩放为 0。
+通过这种方式，你可以利用 Velocity.js 
+提供的丰富功能来创建各种复杂的动画效果。
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vue Transition with Velocity.js</title>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/velocity-animate@2.0/velocity.min.js"></script>
+<style>
+/* 定义初始和结束状态的样式 */
+.ball {
+  width: 50px;
+  height: 50px;
+  background-color: red;
+  border-radius: 50%;
+}
+</style>
+</head>
+<body>
+<div id="app">
+  <button @click="show = !show">Toggle</button>
+  <transition
+    @before-enter="beforeEnter"
+    @enter="enter"
+    @leave="leave"
+  >
+    <div class="ball" v-if="show"></div>
+  </transition>
+</div>
+
+<script>
+new Vue({
+  el: '#app',
+  data: {
+    show: true
+  },
+  methods: {
+    beforeEnter(el) {
+      el.style.opacity = 0;
+    },
+    enter(el, done) {
+      Velocity(el, { opacity: 1, scale: 1 }, { duration: 300, complete: done });
+    },
+    leave(el, done) {
+      Velocity(el, { opacity: 0, scale: 0 }, { duration: 300, complete: done });
+    }
+  }
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,80 @@
+<!--
+/* 进入过渡的开始状态，元素被插入前生效，只应用一帧后立刻删除 */
+.fade-enter-from {
+  opacity: 0;
+}
+
+/* 进入过渡的结束状态，元素被插入后生效，在过渡过程完成后移除 */
+.fade-enter-to {
+  opacity: 1;
+}
+
+/* 定义进入过渡的过程，从开始到结束 */
+.fade-enter-active {
+  transition: opacity 0.5s ease;
+}
+
+/* 离开过渡的开始状态，离开过渡被触发时立刻生效 */
+.fade-leave-from {
+  opacity: 1;
+}
+
+/* 离开过渡的结束状态，离开过渡被触发后生效，在过渡过程完成后移除 */
+.fade-leave-to {
+  opacity: 0;
+}
+
+/* 定义离开过渡的过程，从开始到结束 */
+.fade-leave-active {
+  transition: opacity 0.5s ease;
+}
+
+
+
+
+-->
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Vue Transition Example</title>
+  <!-- 定义进入/离开过渡效果的 CSS -->
+  <style>
+    /* 定义进入和离开过渡的开始和结束状态，这里使用的是 opacity 属性 */
+    .faded-enter-active, .faded-leave-active {
+      /* 当元素进入或离开时，透明度变化将持续 0.5 秒 */
+      transition: opacity 0.5s;
+    }
+    /* 定义进入过渡的开始状态和离开过渡的结束状态 */
+    .faded-enter, .faded-leave-to /* .faded-leave-active 在 Vue 2.1.8+ */ {
+      /* 元素初始状态和结束状态都是不透明的 */
+      opacity: 0;
+    }
+  </style>
+</head>
+<body>
+  <!-- Vue 应用的挂载点 -->
+  <div id="app">
+    <!-- 一个按钮，点击时会切换 show 数据属性的值 -->
+    <button @click="show = !show">Toggle</button>
+    <!-- 使用 transition 元素包裹需要过渡的元素 -->
+    <transition name="faded">
+      <!-- 根据 show 的值决定是否显示段落 -->
+      <p v-if="show">Hello Vue!</p>
+    </transition>
+  </div>
+
+  <!-- 引入 Vue.js 库 -->
+  <script src="vue.js"></script>
+  <script>
+    // 创建一个新的 Vue 实例，并将其挂载到 id 为 'app' 的元素上
+    new Vue({
+      el: '#app',
+      // Vue 实例的数据对象
+      data: {
+        // show 控制段落的显示状态
+        show: true
+      }
+    });
+  </script>
+</body>
+</html>
