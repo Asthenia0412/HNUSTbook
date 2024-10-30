@@ -165,3 +165,39 @@ D.面试算法刷题:
     - 复习了MongoDB-过往记忆流失严重-及时补齐
     - 学习了与Unsafe类的CAS相关的计组结构-譬如CPU中组件构成
     - 学习了基本的Flutter语法,实现简单的多页面跳转安卓程序【该方向学习搁置-就业前景不明朗-同生态位技术为Vue3+Uniapp】
+  - 10.16-10.29：
+    - Spring与源码
+      - SpringMVC源码与Web启动流程（从web.xml到DispatcherServlet）
+      - Resource,ResourceLoader,ResourcePatternResovler,DocumentLoader,MetaDataLoader,MetaData,
+      - TypeFilter,Conditional,SpringValidator
+      - ConversionService,Parser,Converter,Printer
+      - 配置类实现Adapter接口实现适配器模式《Springboot in action》
+      - SpringDataJPA与MybatisPlus注解上的差异,全ORM与半ORM
+    - Web技术
+      - JSP与Servelt相关复习(.Listener-Filter)：《JSP&Servlet学习笔记(第二版)》-林信良
+      - Vue2工程化《Vue.js实战》-黑马
+    - JUC
+      - Thread三种创建方式,Thread源码,Thread生命周期
+      - 函数式接口@FunctionInterface
+      - 同步异步,阻塞非阻塞,线程与进程结构
+      - 线程改变状态的方法(yeild,sleep,join)
+      - 线程池架构/四种便捷线程池/自定义线程池与若干参数/线程池调度流程/任务阻塞队列/调度器钩子方法/线程池四种拒绝策略/线程池优雅关闭/IO与CPU密集型线程池差异/ThreadLocal演进
+      - 线程安全/自增行为的不安全分析/synchronized锁芯分析/生产者与消费者模型
+      - synchronized锁芯对象结构与内置锁
+      - 无锁-偏向锁-轻量级锁-重量级锁/膨胀过程与状态转化分析/线程通讯三种策略
+      - AtomicInteger等基础类/AtomicReferenceArray等数组类/AtomicIntegerFieldUpdater等更新Reference中对象具体元素类
+      - 大端与小端，X86架构用小端,协议传输多用大端
+    - 工具知识
+      - RedisInsight-在Windows上调用虚拟机中的Redis服务
+      - EoLink Apikit-API管理平台,前后端统一接口设计
+      - Ruoyi框架的代码生成器使用策略,以及如何配置生成的代码到前后端项目中
+    - 中间件与分布式架构
+      - MongoDB复习
+      - BASE理论/最终一致性/CAP
+      - 复习SpringCloud NetFlix，Github上传了实验Lab，为Eureka的服务端与客户端《SpringCloud微服务架构开发》-黑马
+      - 拆解了模拟X的微服务项目，归档了服务分类与maven依赖架构
+      - 对Dubbo做了简单入门,认知了SpringCloudAlibaba与Netflix差异,譬如Nacos与Sentinel
+      - Neo4j入门,复习部分ElasticSearch
+      - redis集群部分,Redis的RDB卡顿
+      - TCP第三次握手无回复导致的SYN FLOOD攻击
+      - 
