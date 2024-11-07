@@ -23,14 +23,15 @@ D.面试算法刷题:
     - Html
     - Css
     - Vue
+      - Vite
+      - ElementUI
+      - Vuex,Vue-router...
     - React
-    - ElementUI
-    - ...
   - 后端开发
     - JavaSE本体
     - JavaWeb
     - SSM
-      - SpringIOC+SpringAOP+SpringMVC+Mybatis
+      - SpringIOC+SpringAOP+SpringMVC+Mybatis+Mybatis-plus
     - SpringBoot
     - 中间件
       - Redis
@@ -39,20 +40,36 @@ D.面试算法刷题:
       - RabbitMQ
       - ZooKeeper
       - Mysql
+    - SpringCloud
+      - SpringCloudAlibaba
+      - SpringCloudNetflix
 - Web3开发方向
   - 智能合约
 - 基础性技能
   - 使用Python爬虫提高数据获取能力
 - 面试策略
   - 八股文
+    - 计算机网络
+    - 操作系统
+    - Java Concurrent Util(基础JUC+高并发)
+    - Java Virtual Machine
+    - Spring源码/Mybatis源码
+    - MySQL原理/Redis,MongoDB,ZooKeeper,RabbitMQ,ElasticSearch等中间件的原理分析
   - 常用算法集成
+    - 二分法
+    - 单调栈
+    - 动态规划
+    - DFS/BFS/A*
+    - 二叉树/链表相关
+    - 滑动窗口
+    - 数论
 - 如何更好利用政策
-  - 转专业政策
+  - 转专业教程-基于科大的转专业政策给出的详细步骤可行性探索
   - 如何尽可能在大一上学期得到高绩点转专业（譬如3.94/4.00）
 
 ## 2.仓库的更新状态
 
-随缘更新..
+**更新时间请见Commit部分**
 
 ## 3.推荐给学弟学妹们的学习进度表
 
