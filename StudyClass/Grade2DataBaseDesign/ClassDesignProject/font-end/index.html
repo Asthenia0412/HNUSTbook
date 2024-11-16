@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vite + Vue</title>
+  </head>
+  <body>
+    <div id="app"></div>
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>
+<style>
+    html, body {
+        margin: 0;            /* 移除默认 margin */
+        padding: 0;           /* 移除默认 padding */
+        height: 100%;         /* 确保 html 和 body 高度为 100% */
+        width: 100%;          /* 确保 html 和 body 宽度为 100% */
+    }
+
+    /* 使 #app 元素占满整个页面 */
+    #app {
+        height: 100%; /* 或者使用 height: 100vh; */
+        width: 100%;
+    }
+</style>

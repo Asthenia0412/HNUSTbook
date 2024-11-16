@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>个人资料网格布局</title>
+  <style>
+    /* 基本的页面布局和字体样式 */
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f7f7f7;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    .grid-container {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr); /* 3列等宽 */
+      gap: 20px; /* 每个项之间的间距 */
+      padding: 20px;
+      max-width: 1000px; /* 最大宽度，避免过宽 */
+      background-color: white;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .grid-item {
+      background-color: #fff;
+      border-radius: 10px;
+      padding: 15px;
+      text-align: center;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .grid-item:hover {
+      transform: translateY(-5px); /* 鼠标悬停时轻微上移 */
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+    }
+
+    .avatar {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      margin-bottom: 10px;
+      object-fit: cover;
+    }
+
+    .username {
+      font-size: 1.2em;
+      font-weight: bold;
+      color: #333;
+      margin-bottom: 10px;
+    }
+
+    .bio {
+      font-size: 1em;
+      color: #666;
+      margin-top: 10px;
+    }
+
+    /* 调整屏幕尺寸 */
+    @media (max-width: 768px) {
+      .grid-container {
+        grid-template-columns: repeat(2, 1fr); /* 小屏幕设备时 2列布局 */
+      }
+    }
+
+    @media (max-width: 480px) {
+      .grid-container {
+        grid-template-columns: 1fr; /* 更小屏幕时，单列布局 */
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="grid-container">
+    <div class="grid-item">
+      <img src="https://via.placeholder.com/80" alt="头像1" class="avatar">
+      <div class="username">张三</div>
+      <div class="bio">今天过得不错，和朋友们一起去看了电影。</div>
+    </div>
+    <div class="grid-item">
+      <img src="https://via.placeholder.com/80" alt="头像2" class="avatar">
+      <div class="username">李四</div>
+      <div class="bio">今天在家休息，做了一些家务事，感觉很充实。</div>
+    </div>
+    <div class="grid-item">
+      <img src="https://via.placeholder.com/80" alt="头像3" class="avatar">
+      <div class="username">王五</div>
+      <div class="bio">午饭吃了自己做的炒饭，味道不错，哈哈！</div>
+    </div>
+    <div class="grid-item">
+      <img src="https://via.placeholder.com/80" alt="头像4" class="avatar">
+      <div class="username">赵六</div>
+      <div class="bio">最近工作有点忙，准备找个时间去旅行放松一下。</div>
+    </div>
+    <div class="grid-item">
+      <img src="https://via.placeholder.com/80" alt="头像5" class="avatar">
+      <div class="username">孙七</div>
+      <div class="bio">读了两本新书，感觉受益匪浅，真想多读书！</div>
+    </div>
+    <div class="grid-item">
+      <img src="https://via.placeholder.com/80" alt="头像6" class="avatar">
+      <div class="username">周八</div>
+      <div class="bio">最近开始做运动，保持健康！</div>
+    </div>
+    <div class="grid-item">
+      <img src="https://via.placeholder.com/80" alt="头像7" class="avatar">
+      <div class="username">吴九</div>
+      <div class="bio">终于完成了一个重要项目，现在可以好好休息一下了。</div>
+    </div>
+    <div class="grid-item">
+      <img src="https://via.placeholder.com/80" alt="头像8" class="avatar">
+      <div class="username">郑十</div>
+      <div class="bio">学习编程的过程中，遇到了一些挑战，但也收获了不少经验。</div>
+    </div>
+  </div>
+
+</body>
+</html>

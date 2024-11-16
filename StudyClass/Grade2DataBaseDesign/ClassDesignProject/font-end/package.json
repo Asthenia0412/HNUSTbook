@@ -1,0 +1,23 @@
+{
+  "name": "font-end",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "axios": "^1.7.7",
+    "vue": "^3.5.12",
+    "vue-router": "^4.0.13"
+  },
+  "devDependencies": {
+    "@arco-design/web-vue": "^2.56.3",
+    "@vitejs/plugin-vue": "^5.1.4",
+    "naive-ui": "^2.40.1",
+    "vfonts": "^0.0.3",
+    "vite": "^5.4.10"
+  }
+}
