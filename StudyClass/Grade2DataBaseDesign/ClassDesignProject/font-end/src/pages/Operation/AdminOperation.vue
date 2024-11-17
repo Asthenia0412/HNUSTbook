@@ -234,7 +234,7 @@ const formatValue = (key, value) => {
 const getOptions = (key) => {
   const options = {
     sex: ['M', 'F'],
-    department: ['技术部', '市场部', '人事部'], // 示例部门，根据实际情况调整
+    department: ['技术部', '后勤部', '行政部'], // 示例部门，根据实际情况调整
     state: ['T', 'F'], // 示例状态，根据实际情况调整
     eduLevel: ['小学','初中', '高中', '职高','大专', '大本', '硕士', '博士', '博士后'],
   };

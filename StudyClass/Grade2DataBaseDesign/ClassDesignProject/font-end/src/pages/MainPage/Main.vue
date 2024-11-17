@@ -6,33 +6,33 @@ export default {
 </script>
 
 <template>
-<div class="content">
+  <div class="content">
 
 
-  <!-- 卡片区 -->
-  <div class="card-wrap">
-    <div class="card gradient-bg">
-      <div class="card-title">逻辑减重</div>
+    <!-- 卡片区 -->
+    <div class="card-wrap">
+      <div class="card gradient-bg">
+        <div class="card-title">逻辑减重</div>
+      </div>
+      <div class="card gradient-bg">
+        <div class="card-title">UI焕新</div>
+      </div>
+      <div class="card gradient-bg">
+        <div class="card-title">结构优化</div>
+      </div>
+      <div class="card gradient-bg">
+        <div class="card-title">赋能效率</div>
+      </div>
     </div>
-    <div class="card gradient-bg">
-      <div class="card-title">UI焕新</div>
-    </div>
-    <div class="card gradient-bg">
-      <div class="card-title">结构优化</div>
-    </div>
-    <div class="card gradient-bg">
-      <div class="card-title">赋能效率</div>
+    <div class="announcement">
+      <strong>最新公告:</strong>
+      <p>23计科六班-肖永财-2314020106</p>
+      <p>技术栈：</p>
+      <p>前端：Vue3+Vite</p>
+      <p>后端：SpringBoot/Mybatis-plus/MySQL</p>
+
     </div>
   </div>
-  <div class="announcement">
-    <strong>最新公告:</strong>
-    <p>23计科六班-肖永财-2314020106</p>
-    <p>技术栈：</p>
-    <p>前端：Vue3+Vite</p>
-    <p>后端：SpringBoot/Mybatis-plus/MySQL</p>
-
-  </div>
-</div>
 </template>
 
 <style scoped>

@@ -81,94 +81,109 @@ export default {
 </script>
 
 <style scoped>
-/* 基本的页面布局和字体样式 */
+/* 全局样式修正 */
 body {
-  font-family: Arial, sans-serif;
+  font-family: 'San Francisco', 'Arial', sans-serif; /* 使用Apple的字体 */
   margin: 0;
   padding: 0;
   display: flex;
-  flex-direction: column; /* 垂直布局 */
-  justify-content: flex-start; /* 从顶部开始对齐 */
+  flex-direction: column;
+  justify-content: center; /* 中心对齐 */
   align-items: center;
   min-height: 100vh;
-  background-image: url("background.jpg");
-  background-size: cover; /* 背景图片覆盖整个页面 */
+  background-color: #f2f2f2; /* 使用灰色背景 */
+  color: #333; /* 文字颜色为深灰色 */
 }
 
-/* 登录表单样式 */
+/* 登录表单样式修正 */
 .login-form {
-  width: 100%; /* 表单宽度为100%，横向铺满屏幕 */
-  max-width: 600px; /* 可以设置一个最大宽度，使表单不会过宽 */
-  padding: 20px; /* 给表单内添加一些内边距 */
-  box-sizing: border-box; /* 确保内边距和边框不影响宽度 */
-  margin-top: 0; /* 去掉上外边距，表单紧贴页面顶部 */
-  border-radius: 10px; /* 圆角边框 */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* 轻微阴影 */
-  background-color: rgba(255, 255, 255, 0.8); /* 背景颜色，略带透明 */
-}
-
-/* 控制每一项表单元素之间的间距 */
-.form-group {
-  margin-bottom: 20px; /* 增加底部间距 */
+  width: 100%;
+  max-width: 600px;
+  padding: 40px; /* 增加内边距 */
+  box-sizing: border-box;
   margin-top: 0;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background-color: #fff; /* 使用白色背景 */
 }
 
-/* 设置输入框的统一样式 */
+/* 卡片布局样式 */
+.card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  border-radius: 10px;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-10px); /* 浮动效果加强 */
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* 表单元素样式 */
+.form-group {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
 input {
   width: 100%;
   padding: 12px;
   margin-top: 5px;
   border: 1px solid #ccc;
   border-radius: 4px;
-  box-sizing: border-box; /* 确保padding不会影响宽度 */
-  font-size: 16px; /* 增大字体尺寸 */
+  box-sizing: border-box;
+  font-size: 16px;
 }
 
-/* 按钮样式 */
 button {
-  width: 100%; /* 按钮与输入框宽度对齐 */
+  width: 100%;
   padding: 12px;
-  background-color: #4CAF50; /* 绿色背景 */
-  color: white;
+  background-color: #000; /* 使用黑色 */
+  color: #fff;
   border: none;
   border-radius: 4px;
   cursor: pointer;
-  font-size: 16px; /* 增大字体尺寸 */
-  transition: background-color 0.3s ease; /* 添加平滑过渡效果 */
+  font-size: 16px;
+  transition: background-color 0.3s ease;
 }
 
-/* 按钮的悬浮样式 */
 button:hover {
-  background-color: #45a049; /* 悬浮时变暗 */
+  background-color: #333; /* 悬浮时变暗 */
 }
 
-/* 增加聚焦状态的输入框样式 */
 input:focus {
-  border-color: #4CAF50; /* 聚焦时边框变绿 */
-  outline: none; /* 去掉默认的聚焦轮廓 */
+  border-color: #000; /* 聚焦时边框变黑 */
+  outline: none;
 }
 
-/* 为表单标签（如果有的话）添加样式 */
 label {
   font-size: 14px;
   color: #333;
   margin-bottom: 5px;
-  display: block; /* 确保标签占一行 */
+  display: block;
 }
 
-/* 页面上的网格布局 */
+/* 网格布局样式 */
 .grid-container {
   display: grid;
-  grid-template-columns: repeat(3, 1fr); /* 3列等宽 */
-  gap: 20px; /* 每个项之间的间距 */
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
   padding: 20px;
-  max-width: 1000px; /* 最大宽度，避免过宽 */
-  background-color: white;
+  max-width: 1000px;
+  background-color: #fff;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .grid-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   background-color: #fff;
   border-radius: 10px;
   padding: 15px;
@@ -178,7 +193,7 @@ label {
 }
 
 .grid-item:hover {
-  transform: translateY(-5px); /* 鼠标悬停时轻微上移 */
+  transform: translateY(-5px);
   box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
 }
 
@@ -203,20 +218,20 @@ label {
   margin-top: 10px;
 }
 
-/* 响应式：移动端优化 */
+/* 响应式样式 */
 @media (max-width: 768px) {
   .grid-container {
-    grid-template-columns: repeat(2, 1fr); /* 小屏幕设备时 2列布局 */
+    grid-template-columns: repeat(2, 1fr);
   }
 }
 
 @media (max-width: 480px) {
   .grid-container {
-    grid-template-columns: 1fr; /* 更小屏幕时，单列布局 */
+    grid-template-columns: 1fr;
   }
 
   .login-form {
-    max-width: 90%; /* 移动端时，表单宽度占屏幕90% */
+    max-width: 90%;
   }
 }
 
