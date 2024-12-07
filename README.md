@@ -30,7 +30,7 @@ D.面试算法刷题:
       - 搜索引擎：
         - ElasticSearch
       - 消息中间件：
-        - RabbitMQ/Kafka/RocketMQ
+        - RabbitMQ(安全/低吞吐)/Kafka(会丢数据-日志存储/高吞吐)/RocketMQ(安全/高吞吐)
     - 微服务中间件：
       - 异构数据转化：Canal
       - 服务注册中心：Nacos(注册+配置)/Eureka(注册)/ZooKeeper(集成Curator)(注册)
