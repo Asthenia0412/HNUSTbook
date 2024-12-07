@@ -49,14 +49,19 @@ D.面试算法刷题:
       - 服务检测：Arthas
       - OOM排查：VisualVM
       - 并发测试：Jmeter
-    - 数据库设计：
-      - 自增主键：优选雪花和leaf，拒绝UUID和单库自增主键
+    - 分布式数据库设计：
+      - 主键处理：优选雪花和leaf，拒绝UUID和单库自增主键
       - 分库分表：阿里-MyCat/apache-ShardingSphere
       - 列式数据库：Cassandra(写入快更新慢)
-    - 序列化思路：
+    - 序列化策略：
       - Jackson-SpringBoot内置
       - Hessian-Dubbo内置
       - Protocal Buffers-Google
+    - 日志收集策略：
+      - 多服务内嵌LogStash+ElasticSearch+Kibana `内嵌LogStashCPU开销高`
+      - 多服务代码耦合LogStashTCPSocketAppender依赖+统一发给LogStash+ElasticSearch+Kibana`LogStashTCPSocketAppender代码耦合大`
+      - 多服务Beats监听+统一发给LogStash+ElasticSearch+Kibana`Beats监听的导出数据单一化,不可导出到多个中间件,于是先导到Kafka,大家从Kafka读数据`
+      - 多服务Beats监听+统一发给Kafka+分发给LogStash（以及Redis等其他数据中心）+Kibana`部署成本昂贵`
   
   - 智能合约
   
