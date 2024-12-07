@@ -19,34 +19,50 @@ D.面试算法刷题:
 
 - Web2开发方向
   - 前端开发
-    - JavaScript
-    - Html
-    - Css
-    - Vue
-      - Vite
-      - ElementUI
-      - Vuex,Vue-router...
-    - React
+    - 基础知识：Html/Css/JavaScript
+    - 进阶知识：Vue.js/Vite/Vue-router/Vuex
   - 后端开发
-    - JavaSE本体
-    - JavaWeb
-    - SSM
-      - SpringIOC+SpringAOP+SpringMVC+Mybatis+Mybatis-plus
-    - SpringBoot
-    - 中间件
-      - Redis
-      - MongoDB
-      - ElasticSearch
-      - RabbitMQ
-      - ZooKeeper
-      - Mysql
-    - SpringCloud
-      - SpringCloudAlibaba
-      - SpringCloudNetflix
-- Web3开发方向
+    - 前置知识：JavaSE/Servlet+Jsp/SpringMVC+SpirngIOC+SpringAOP/SpringBoot/JDBC/JPA/Mybatis/Mybatis-Plus
+    - 独立中间件：
+      - 数据存储：
+        - 关系型：MySQL
+        - 非关系型：MongoDB/Redis
+      - 搜索引擎：
+        - ElasticSearch
+      - 消息中间件：
+        - RabbitMQ/Kafka/RocketMQ
+    - 微服务中间件：
+      - 异构数据转化：Canal
+      - 服务注册中心：Nacos(注册+配置)/Eureka(注册)/ZooKeeper(集成Curator)(注册)
+      - 配置中心：SpringCloud-Config
+      - 分布式事务：Seata
+      - 流量控制：Sentinel(优选)/Hystrix(不建议)
+      - RPC(同步调用)：Dubbo/Feign
+      - 负载均衡：Ribbon/GateWay/Nginx
+      - 高可用保证：MHA(服务MySQL) Redis-Sentinel(服务Redis-全量存储) Redis-Cluster(服务Redis-分片存储) 布隆过滤器(服务Redis)
+    - 项目部署与运维：
+      - 代码存储：GitLab
+      - 虚拟化与部署：Docker/K8s
+      - 镜像仓库：DockerHub/Harbor
+      - CI/DI：Jenkins
+      - 服务更新：蓝绿发布/红黑发布/灰度发布
+      - 服务检测：Arthas
+      - OOM排查：VisualVM
+      - 并发测试：Jmeter
+    - 数据库设计：
+      - 自增主键：优选雪花和leaf，拒绝UUID和单库自增主键
+      - 分库分表：阿里-MyCat/apache-ShardingSphere
+      - 列式数据库：Cassandra(写入快更新慢)
+    - 序列化思路：
+      - Jackson-SpringBoot内置
+      - Hessian-Dubbo内置
+      - Protocal Buffers-Google
+  
   - 智能合约
+  
 - 基础性技能
   - 使用Python爬虫提高数据获取能力
+  
 - 面试策略
   - 八股文
     - 计算机网络
@@ -63,6 +79,7 @@ D.面试算法刷题:
     - 二叉树/链表相关
     - 滑动窗口
     - 数论
+  
 - 如何更好利用政策
   - 转专业教程-基于科大的转专业政策给出的详细步骤可行性探索
   - 如何尽可能在大一上学期得到高绩点转专业（譬如3.94/4.00）
