@@ -36,7 +36,7 @@ D.面试算法刷题:
       - 服务注册中心：Nacos(注册+配置)/Eureka(注册)/ZooKeeper(集成Curator)(注册)
       - 配置中心：SpringCloud-Config
       - 分布式事务：Seata
-      - 流量控制：Sentinel(优选)/Hystrix(不建议)
+      - 流量控制：Sentin el(优选)/Hystrix(不建议)
       - RPC(同步调用)：Dubbo/Feign
       - 负载均衡：Ribbon/GateWay/Nginx
       - 高可用保证：MHA(服务MySQL) Redis-Sentinel(服务Redis-全量存储) Redis-Cluster(服务Redis-分片存储) 布隆过滤器(服务Redis)
@@ -62,10 +62,24 @@ D.面试算法刷题:
       - 多服务代码耦合LogStashTCPSocketAppender依赖+统一发给LogStash+ElasticSearch+Kibana`LogStashTCPSocketAppender代码耦合大`
       - 多服务Beats监听+统一发给LogStash+ElasticSearch+Kibana`Beats监听的导出数据单一化,不可导出到多个中间件,于是先导到Kafka,大家从Kafka读数据`
       - 多服务Beats监听+统一发给Kafka+分发给LogStash（以及Redis等其他数据中心）+Kibana`部署成本昂贵`
+    - 服务性能指标监控(配合K8s)：
+      1. **具体的Service的运行及Exporter**
+      2. **数据抽取到 Prometheus**
+      3. **部分服务不支持 Export，采用 PushGateway 推送数据**
+      4. **数据存储到 TSDB（时序数据库）**
+      5. **Grafana 进行数据可视化**
+    - 服务调用链路跟踪
+      - 基于日志收集：Sleuth&Zipkin(Sleuth负责收集日志,ZipKin的客户端收集当前服务Sleuth产生的日志，并且发送给ZipKin服务端，产出可视化的链路分析结果)
+      - 基于Agent收集调用链路：SkyWalking
   
-  - 智能合约
   
-- 基础性技能
+  
+  Web3方向：
+  
+  - 智能合约（Solidity）
+  - 以太坊开发(Go)
+  
+- 基础技能
   - 使用Python爬虫提高数据获取能力
   
 - 面试策略
