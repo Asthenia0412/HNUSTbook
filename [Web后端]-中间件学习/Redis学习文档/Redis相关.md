@@ -994,7 +994,7 @@ RequestPayLoad有Json 下面的code和phone都是我输入的内容
    >    // 假设存在一个BaseService类
    >    public class UserService extends BaseService<User> {
    >        // ... 其他方法 ...
-   >                   
+   >                      
    >        public boolean save(User user) {
    >            // 实现保存用户的逻辑
    >            return true;
@@ -1014,7 +1014,7 @@ RequestPayLoad有Json 下面的code和phone都是我输入的内容
    >            // 添加等于条件
    >            return this;
    >        }
-   >                   
+   >                      
    >        // 执行查询并返回单个结果
    >        public User one() {
    >            // 实现查询逻辑
