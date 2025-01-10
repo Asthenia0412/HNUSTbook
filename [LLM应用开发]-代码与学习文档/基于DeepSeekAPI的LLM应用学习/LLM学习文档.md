@@ -1,5 +1,18 @@
 ## 1.安装OpenAI依赖,获取DeepSeek的API
 
+首先：安装openai的依赖
+
+```cmd
+pip install openai
+
+```
+
+然后你得去[Deepseek API | DeepSeek API Docs](https://api-docs.deepseek.com/zh-cn/api/deepseek-api/)申领一个API，并且在控制台生成一个key。
+
+注意：这个key一旦生成无法被二次查看，你最好将其复制到本地。
+
+截止到2025.1.9：DeepSeek会默认赠送500w的Token，也就是10元余额。
+
 ```python
 # 导入 OpenAI 模块
 from openai import OpenAI

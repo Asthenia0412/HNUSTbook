@@ -36,7 +36,13 @@
       - 流量控制：Sentin el(优选)/Hystrix(不建议)
       - RPC(同步调用)：Dubbo/Feign
       - 负载均衡：Ribbon/GateWay/Nginx
-      - 高可用保证：MHA(服务MySQL) Redis-Sentinel(服务Redis-全量存储) Redis-Cluster(服务Redis-分片存储) 布隆过滤器(服务Redis)
+      - 高可用保证：MHA(服务MySQL) Redis-Sentinel(服务Redis-全量存储) Redis-Cluster(服务Redis-分片存储) 布隆过滤器(服务Redis)/MGR(MHA替代品)/ProxySQL(实现读写分离)
+    - 中间件与服务同步机制：
+    
+      - 异构数据转化：
+        - FlinkCDC：MySQL与ElasticSearch数据同步。通过状态表实现"伪双写一致性"——仅展现双写同步的数据
+      - 同构数据同步：
+        - ShardingJDBC(分库分表) + ProxySQL(读写分离) + MGR集群(联结Master服务和Slave服务)
     - 项目部署与运维：
       - 代码存储：GitLab
       - 虚拟化与部署：Docker/K8s
@@ -70,6 +76,8 @@
       - 基于Agent收集调用链路：SkyWalking
     - 项目管理与协作开发：
       - JIRA/禅道：多用户协作开发：测试/项目经理/开发
+    
+      
   
   
   
