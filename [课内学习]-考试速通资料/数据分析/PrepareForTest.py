@@ -1,7 +1,16 @@
-import pandas as pd
 import numpy as np
-np.random.seed(0x1010)
-t = np.random.normal(75,8,160).reshape(40,4)
-t = t.astype(int)
-df = pd.DataFrame(t,index=range(1001,1041),columns=['A','B','C','D'])
-print(df.head(5))
+from sklearn.linear_model import LinearRegression
+
+# 准备数据
+x = np.array([[1], [2], [3], [4]])
+y = np.array([2, 4, 6, 8])
+
+# 创建并训练模型
+model = LinearRegression()
+model.fit(x, y)
+
+# 预测 x=5 时的 y 值
+x_new = np.array([[5]])
+y_pred = model.predict(x_new)
+
+print("预测结果:", y_pred)
