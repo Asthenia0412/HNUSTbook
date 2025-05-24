@@ -189,19 +189,13 @@ Netty 的 Reactor 模式体现在以下组件中：
 
    - 对应 Reactor 模式中的事件循环池。
 
-   - Netty 通常使用两个 
-
-     ```
-     EventLoopGroup
-     ```
-
-     ：
+   - Netty 通常使用两个 EventLoopGroup：
 
      - **Boss EventLoopGroup**：类似主 Reactor，负责监听连接事件（Accept）。
      - **Worker EventLoopGroup**：类似子 Reactor，负责处理已连接客户端的 I/O 事件（读、写等）。
-
+     
    - 每个 `EventLoop` 是一个单线程的事件循环，绑定到一组 `Channel`，负责监听和分发事件。
-
+   
 2. **Channel**：
 
    - 表示一个网络连接或套接字，封装了底层的 I/O 操作。

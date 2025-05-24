@@ -35,7 +35,7 @@
 1. **线程（Thread）**：
 
    - 每个 `EventLoop` 绑定一个独立线程，运行无限循环，处理 I/O 事件和任务。
-   - 单线程设计避免同步开销，确保高效性和一致性。
+   - 单线程设计**避免同步开销**，确保高效性和一致性。
 
 2. **Selector**：
 
@@ -44,13 +44,7 @@
 
 3. **taskQueue（任务队列）**：
 
-   - 作用
-
-     ：
-
-     ```
-     taskQueue
-     ```
+   - 作用：taskQueue
 
       存储非 I/O 任务，包括：
 
@@ -60,12 +54,10 @@
 
    - **实现**：Netty 使用 `MpscQueue`（多生产者单消费者队列，如 `MpscUnboundedArrayQueue`），支持多线程安全写入，单线程消费。
 
-   - 处理机制
-
-     ：
-
-     - `EventLoop` 的线程在每次循环中，先处理 I/O 事件（通过 `Selector.select()`），再执行 `taskQueue` 中的任务。
-     - 为避免任务阻塞 I/O，Netty 通过 `ioRatio` 参数（默认 50%）控制 I/O 和任务的执行时间比例。
+   - 处理机制：
+   
+     - `EventLoop` 的线程在每次循环中，先处理 I/O 事件（通过 `Selector.select()`），再执行 `taskQueue` 中的任务。(先后关系非常之重要)
+  - 为避免任务阻塞 I/O，Netty 通过 `ioRatio` 参数（默认 50%）控制 I/O 和任务的执行时间比例。
      - 耗时任务可交给 `EventExecutorGroup`（额外线程池）处理，防止 `taskQueue` 积压。
 
 4. **Channel 绑定**：
@@ -82,9 +74,7 @@
 
    - **taskQueue 的作用**：将消息持久化或转发任务提交到 `taskQueue`，由 `EventLoop` 异步执行，避免阻塞 I/O 事件处理。
 
-   - 示例
-
-     ：
+   - 示例：
 
      ```java
      eventLoop.execute(() -> {
@@ -92,16 +82,14 @@
          messageStore.append(message);
      });
      ```
-
+   
 2. **定时任务**：
 
    - **场景**：MQ Broker 需要定期清理过期消息、检查消费者心跳或更新统计信息（如队列长度）。
 
    - **taskQueue 的作用**：通过 `eventLoop.schedule()` 提交定时任务，`taskQueue` 存储并在指定时间触发。
 
-   - 示例
-
-     ：
+   - 示例：
 
      ```java
      eventLoop.schedule(() -> {
@@ -109,16 +97,14 @@
          messageStore.cleanExpiredMessages();
      }, 60, TimeUnit.SECONDS);
      ```
-
+   
 3. **连接管理**：
 
    - **场景**：检测空闲连接（如生产者/消费者长时间未发送心跳）并关闭。
 
    - **taskQueue 的作用**：提交检测任务到 `taskQueue`，定期检查连接状态。
 
-   - 示例
-
-     ：
+   - 示例：
 
      ```java
      eventLoop.scheduleAtFixedRate(() -> {
@@ -126,16 +112,14 @@
          channel.closeIfIdle();
      }, 30, 30, TimeUnit.SECONDS);
      ```
-
+   
 4. **批量任务处理**：
 
    - **场景**：Broker 收到大量小消息，为减少 I/O 开销，需批量写入磁盘或批量发送给消费者。
 
    - **taskQueue 的作用**：将批量处理逻辑提交到 `taskQueue`，由 `EventLoop` 在适当时间执行。
 
-   - 示例
-
-     ：
+   - 示例：
 
      ```java
      eventLoop.execute(() -> {
@@ -209,19 +193,15 @@ while (!Thread.interrupted()) {
 
 2. **职责划分**：
 
-   - Boss EventLoopGroup
-
-     ：
+   - Boss EventLoopGroup：
 
      - 通常配置 1 个 `EventLoop`，监听 `ServerSocketChannel` 的连接事件。
-     - 接受新连接后，将 `SocketChannel` 分配到 `Worker EventLoopGroup` 的某个 `EventLoop`。
-
-   - Worker EventLoopGroup
-
-     ：
+  - 接受新连接后，将 `SocketChannel` 分配到 `Worker EventLoopGroup` 的某个 `EventLoop`。
+     
+   - Worker EventLoopGroup：
 
      - 包含多个 `EventLoop`，默认线程数为 CPU 核心数的两倍。
-     - 每个 `EventLoop` 处理一组 `SocketChannel` 的 I/O 事件（如消息读取、发送）。
+  - 每个 `EventLoop` 处理一组 `SocketChannel` 的 I/O 事件（如消息读取、发送）。
      - 使用轮询算法（如 `next()`）分配新连接，确保负载均衡。
 
 3. **任务分配**：
